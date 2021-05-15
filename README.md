@@ -8,7 +8,7 @@ Picture worth 1k words
 
 ![containers overview](containers.svg)
 
-What can you see on this picture?
+What can you see here:
 
 * SMTP, HTTP, and HTTPS requests come to [nginx][] container - It manages all SSL stuff, including STARTTLS encryption layer for SMTP, and also serves static sites
 
@@ -16,9 +16,9 @@ What can you see on this picture?
 
 * Postfix uses [DKIM][] milter and forwards received emails to [dovecot][] via LMTP
 
-* Also there are [SquirrelMail][] and [Baikal][] containers
+* Also [SquirrelMail][] and [Baikal][] containers don't share address book, sadly
 
-* they have separate address books, sadly
+* This picture created with [PlantUML][p1]
 
 [nginx]: nginx.cont/README.md
 [Postfix]: postfix.cont/README.md
@@ -26,6 +26,7 @@ What can you see on this picture?
 [DKIM]: dkim.cont/README.md
 [SquirrelMail]: squirrelmail.cont/README.md
 [Baikal]: baikal.cont/README.md
+[p1]: http://www.plantuml.com/plantuml/uml/LP0zImGn48Rx-HLJAockNOvm81Q2M5a8QX4lepTS9XkJYPp_NjmrRj84yippllau57LPgmGuiISaIVgDdienSrAU8y3prIiQY_63usN28ffUuadRMW2AEYLCSz5tli3YeJ6saJLp_NHpVtVxy3ZQEzplANfhuG-WgLjojqRR2VxCidd1s8LCA1oKyhyrVz5nraqqjh49GrTNFYldJ44S1-WtQ_Tm-t4-LBAur3sw5oVy_I7efc-Epwxn0qLV9Vm0
 
 
 Extra features
@@ -35,13 +36,13 @@ Extra features
 
 * Separate containers for email processing (Postfix) and mail storage (Dovecot)
 
-See [daily.sh][]:
+With periodically running [daily.sh](daily.sh):
 
-* addresses listed in SquirrelMail address book are whitelisted from spam
+* mail from addresses listed in SquirrelMail address books is excluded from spam check
 
-* list of dovecot users is synced to postfix
+* list of dovecot users is synced to postfix (mail to non-existing local users promptly discarded)
 
-* emails from addresses not listed in user's SquirrelMail address book are sorted directly to trash
+* mail from addresses not listed in user's SquirrelMail address book sorted directly to trash
 
 
 Installation
