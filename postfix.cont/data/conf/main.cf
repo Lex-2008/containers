@@ -1,0 +1,56 @@
+# === global config ===
+
+mydomain=shpakovsky.ru
+myhostname=$mydomain
+compatibility_level=3
+
+# === for running in container ===
+mynetworks_style = subnet
+queue_directory = /data/queue
+smtpd_authorized_xclient_hosts=$mynetworks
+
+maillog_file = /data/logs/mail.log
+maillog_file_prefixes=/data/logs
+smtpd_hard_error_limit = ${stress?{1}:{5}}
+
+# === delivery ===
+
+# disable local delivery
+mydestination=
+
+# deliver to dovecot container
+virtual_mailbox_domains = $mydomain
+virtual_transport = lmtp:inet:dovecot:26
+lmtp_host_lookup = native
+
+# verification: deliver only to users enumerated in this file
+virtual_mailbox_maps = texthash:/data/conf/users.txt
+virtual_mailbox_base = /dev/null
+recipient_delimiter = +
+
+# === DKIM milter ===
+
+smtpd_milters = inet:dkim:12301
+
+# === Spam control ===
+
+# Relay control - default:
+# (local and authenticated clients excluded),
+# others must deliver to local address
+smtpd_relay_restrictions = permit_mynetworks, 
+			  permit_sasl_authenticated,
+			  reject_unauth_destination
+
+# (local and authenticated clients excluded),
+# others must deliver to local address.
+# check that recepients are listed in virtual_mailbox_maps = texthash:/data/conf/users.txt file
+# known senders and recepients with '+' are ok
+# others - DNSBL lookups.
+smtpd_recipient_restrictions = permit_mynetworks,
+			  permit_sasl_authenticated,
+			  reject_unauth_destination,
+			  reject_unlisted_recipient,
+			  check_sender_access texthash:/data/conf/known-senders.txt,
+			  check_recipient_access regexp:/data/conf/plus.txt,
+			  reject_rbl_client rbl.rbldns.ru
+
