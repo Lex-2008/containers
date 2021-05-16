@@ -34,7 +34,7 @@ Extra features
 
 * Separate containers for SMTP security layer (ngnix) and message processing (Postfix)
 
-* Separate containers for email processing (Postfix) and mail storage (Dovecot)
+* Separate containers for mail processing (Postfix) and storage (Dovecot)
 
 With periodically running [daily.sh](daily.sh):
 
@@ -42,7 +42,7 @@ With periodically running [daily.sh](daily.sh):
 
 * list of dovecot users is synced to postfix (mail to non-existing local users promptly discarded)
 
-* mail from addresses not listed in user's SquirrelMail address book sorted directly to trash
+* mail from addresses not listed in user's SquirrelMail address book sorted directly to trash (optionally)
 
 
 Installation
@@ -52,7 +52,8 @@ Installation
 
 * Run `builds.sh` to build all containers
 
-* Look through all directories, read all READMEs, edit all necessary files
+* Look through all directories, read all READMEs, edit all necessary files,
+optionally run `daily.sh` to sync configs.
 
 * Run `starts.sh` to start all containers
 

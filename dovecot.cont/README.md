@@ -4,11 +4,11 @@ Dovecot with LMTP and Sieve
 Features
 --------
 
-* Receive mail from postfix via LMTP
+* Receives mail from postfix via LMTP
 
-* mail sorting via Sieve
+* Sorts received mail with Sieve
 
-* Also "sent" mail sorting
+* Also sorts "sent" mail!
 
 * List of users with passwords stored in single file
 
@@ -17,18 +17,27 @@ Installation
 
 * Add users to `data/conf/passwd.txt` file, in format like this:
 
-	{email}:{encrypted-password}
+		{email}:{encrypted-password}
 
-To encrypt the password, you can use `openssl passwd` command.
+	To encrypt the password you can use `openssl passwd` command.
+	For example, to add user with email "test@example.com" and password "Tr0ub@dur", you can execute this line:
 
-For example, to add user with email "test@example.com" and password "Tr0ub@dur", you can execute this line:
-
-	$ echo "test@example.com:`openssl passwd Tr0ub@dur`" | tee data/conf/passwd.txt
-	Warning: truncating password to 8 characters
-	test@example.com:k3Nn97/2DWock
+		$ echo "test@example.com:`openssl passwd Tr0ub@dur`" | tee -a data/conf/passwd.txt
+		Warning: truncating password to 8 characters
+		test@example.com:k3Nn97/2DWock
 
 * Add users' sieve scripts to `data/sieve` directory, naming them `$email.sieve`.
 For example, for user "test@example.com", create file `data/sieve/test@example.com.sieve`.
+
+	For users, who like messages from strangers (people not in their address book) to be sorted directly to trash,
+	add this at the end of their sieve file:
+
+		elsif not address :is "from" [
+		### auto-trash ###
+
+	and run the `daily.sh` script in parent dir.
+
+	Note that `elsif` assumes there are other conditions above.
 
 * Sent-mails sieve script is currently global.
 Save it to `data/sieve/sent.sieve` file.
@@ -48,6 +57,8 @@ To deliver email to this dovecot from your postfix, add this to your `main.cf` f
 
 where `dkim` is IP address or hostname of VM or container where this milter is running,
 and `lmtp_host_lookup = native` might be needed if IP address is stored in `/etc/hosts` file.
+
+To read email from your SquirrelMail, just use it as a normal IMAP server.
 
 Used sources
 ------------

@@ -15,12 +15,12 @@ which might append text at the end of your messages (read more about bodylength 
 
 * Generate new key (specify your domain instead of shpakovsky.ru):
 
-	# enter the container
-	docker run --rm -it dkim sh
+		# enter the container
+		docker run --rm -it dkim sh
 
-	# generate the key
-	cd /data/key
-	opendkim-genkey -s postfix -d shpakovsky.ru
+		# generate the key
+		cd /data/key
+		opendkim-genkey -s postfix -d shpakovsky.ru
 
 * Add DKIM DNS record - its content is in `data/key/postfix.txt` file
 
