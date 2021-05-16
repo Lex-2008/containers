@@ -6,7 +6,7 @@ Installation
 
 * Edit the `data/conf/opendkim.conf` file to specify your domain name instead of shpakovsky.ru
 
-* (optionally) edit other settings in that file as you like, use [man opendkim.conf][man-conf] for more info
+* (optionally) edit other settings in that file as you like, use [opendkim.conf man page][man-conf] for more info
 
 [man-conf]: http://www.opendkim.org/opendkim.conf.5.html
 

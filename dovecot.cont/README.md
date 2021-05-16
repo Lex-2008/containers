@@ -27,9 +27,9 @@ Installation
 		test@example.com:k3Nn97/2DWock
 
 * Add users' sieve scripts to `data/sieve` directory, naming them `$email.sieve`.
-For example, for user "test@example.com", create file `data/sieve/test@example.com.sieve`.
+For example, for user "test@example.com" create `data/sieve/test@example.com.sieve` file.
 
-	For users, who like messages from strangers (people not in their address book) to be sorted directly to trash,
+	For users who like messages from strangers (people not in their address book) to be sorted directly to trash,
 	add this at the end of their sieve file:
 
 		elsif not address :is "from" [
@@ -39,7 +39,7 @@ For example, for user "test@example.com", create file `data/sieve/test@example.c
 
 	Note that `elsif` assumes there are other conditions above.
 
-* Sent-mails sieve script is currently global.
+* Sent-mail-sorting sieve script is currently global.
 Save it to `data/sieve/sent.sieve` file.
 
 Usage

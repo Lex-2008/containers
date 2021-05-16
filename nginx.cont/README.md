@@ -21,7 +21,7 @@ Installation
 
 * Generate SSL keys and put them in `data/cert` directory.
 Certificate generation _is left as exercise to the reader_,
-but I prefer running [dehydrated][] manually and just copy these two files:
+but I just run [`dehydrated -c`][] manually and copy these two files:
 
 		dehydrated/certs/shpakovsky.ru/fullchain.pem
 		dehydrated/certs/shpakovsky.ru/privkey.pem

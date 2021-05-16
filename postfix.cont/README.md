@@ -15,7 +15,7 @@ hence has no access to received email.
 * Verifies that local user exist (listed in a text file) before doing spam check.
 
 * Does **not** perform spam-check against emails sent **from** addresses listed in `known_senders.txt` file,
-thus your friend's mail will never go to spam!
+thus your friends' mail will never go to spam!
 
 * Does **not** perform spam-check against emails sent **to** addresses with `+` in them (like "alexey+facebook@example.com"),
 thus those registration emails will never go to spam!
