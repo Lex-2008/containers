@@ -11,7 +11,10 @@ smtpd_authorized_xclient_hosts=$mynetworks
 
 maillog_file = /data/logs/mail.log
 maillog_file_prefixes=/data/logs
+
+# to limit logs
 smtpd_hard_error_limit = ${stress?{1}:{5}}
+smtpd_client_event_limit_exceptions = ${stress?{$mynetworks}:{static:any}}
 
 # === delivery ===
 
