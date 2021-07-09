@@ -29,7 +29,7 @@ lmtp_host_lookup = native
 # verification: deliver only to users enumerated in this file
 virtual_mailbox_maps = texthash:/data/conf/users.txt
 virtual_mailbox_base = /dev/null
-recipient_delimiter = +
+recipient_delimiter = +-
 
 # === DKIM milter ===
 
@@ -47,13 +47,13 @@ smtpd_relay_restrictions = permit_mynetworks,
 # (local and authenticated clients excluded),
 # others must deliver to local address.
 # check that recepients are listed in virtual_mailbox_maps = texthash:/data/conf/users.txt file
-# known senders and recepients with '+' are ok
+# known senders and recepients with '+' or '-' are ok
 # others - DNSBL lookups.
 smtpd_recipient_restrictions = permit_mynetworks,
 			  permit_sasl_authenticated,
 			  reject_unauth_destination,
 			  reject_unlisted_recipient,
 			  check_sender_access texthash:/data/conf/known-senders.txt,
-			  check_recipient_access regexp:/data/conf/plus.txt,
+			  check_recipient_access regexp:/data/conf/delimeters.txt,
 			  reject_rbl_client rbl.rbldns.ru
 
