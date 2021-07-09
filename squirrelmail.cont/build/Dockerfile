@@ -1,9 +1,11 @@
 FROM alpine:latest
-RUN apk add --no-cache lighttpd php7-cgi php7-gettext php7-session patch php7-iconv php7-json php7-mbstring php7-xmlreader php7-xmlwriter # php7-openssl
+RUN apk add --no-cache lighttpd php7-cgi php7-gettext php7-session patch php7-iconv php7-json php7-mbstring php7-xmlreader php7-xmlwriter php7-openssl
 
 #ENV branch=devel
 ENV branch=stable
 ENV version=1.4.22
+
+ADD quoted_printable_fix-1.4.x-version_3.diff /quoted_printable_fix-1.4.x-version_3.diff
 
 RUN wget https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fsnapshots.squirrelmail.org%2Fsquirrelmail-$(date +%Y%m%d)_0200-SVN.$branch.tar.bz2 -O /tmp/squirrelmail.tar.bz2 && \
 #RUN wget https://altushost-swe.dl.sourceforge.net/project/squirrelmail/stable/$version/squirrelmail-webmail-$version.tar.bz2 -O /tmp/squirrelmail.tar.bz2 && \
@@ -15,9 +17,8 @@ RUN wget https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fsnapshots.squ
     rm /tmp/squirrelmail.tar.bz2 && \
     # apply patch
     cd /squirrelmail && \
-    wget https://sourceforge.net/p/squirrelmail/bugs/_discuss/thread/feebafb3/f2f7/2c33/attachment/quoted_printable_fix-1.4.x-version_3.diff && \
-    patch -p0 <quoted_printable_fix-1.4.x-version_3.diff && \
-    rm quoted_printable_fix-1.4.x-version_3.diff && \
+    patch -p0 </quoted_printable_fix-1.4.x-version_3.diff && \
+    rm /quoted_printable_fix-1.4.x-version_3.diff && \
     cd - && \
     # apply config
     rm -rf /squirrelmail/config /squirrelmail/plugins && \
