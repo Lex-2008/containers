@@ -7,6 +7,7 @@ docker run -d -v $PWD/postfix.cont/data:/data -p 127.0.0.1:2525:25 --link doveco
 # webs
 docker run -d -v $PWD/baikal.cont/data:/data -p 127.0.0.1:8002:8000 --name=baikal baikal
 docker run -d -v $PWD/squirrelmail.cont/data:/data -p 127.0.0.1:8001:8000 --link dovecot:dovecot --link postfix:postfix --link baikal:baikal --name=squirrelmail squirrelmail
+docker run -d -v $PWD/logshow.cont/data:/data -v $PWD/nginx.cont/data/logs:/nginx-logs -v $PWD/postfix.cont/data/logs:/postfix-logs -p 127.0.0.1:8003:8000 --name=logshow logshow
 
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx
