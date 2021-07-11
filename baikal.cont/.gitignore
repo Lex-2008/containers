@@ -1,2 +1,3 @@
-data/Specific/db/db.sqlite
-data/config/baikal.yaml
+config/baikal.yaml
+Specific/db/db.sqlite
+Specific/INSTALL_DISABLED

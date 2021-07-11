@@ -1,6 +1,10 @@
-At this moment, right after fresh checkout installation is borked:
-* admin access is disabled in nginx.conf
-* installation is disabled by `Specific/INSTALL_DISABLED` file
-* installed version (the one I have) is not shipped
+This should be using [ckulka/baikal-docker][u] docker image.
 
-But it works for me :)
+Note that when used behind ngnix proxy whose config provided in this repo,
+its admin part is [disabled][d].
+
+Also note 
+
+[u]: https://hub.docker.com/r/ckulka/baikal
+[d]: https://github.com/Lex-2008/containers/blob/master/nginx.cont/data/conf/nginx.conf#L38
+
