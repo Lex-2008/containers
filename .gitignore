@@ -1,2 +1,3 @@
 */data/logs/*
 */logrotate-pre.sh
+*/logrotate-post.sh
