@@ -21,6 +21,9 @@ smtpd_client_event_limit_exceptions = ${stress?{$mynetworks}:{static:any}}
 # disable local delivery
 mydestination=
 
+# aliases
+virtual_alias_maps = texthash:/data/conf/aliases.txt
+
 # deliver to dovecot container
 virtual_mailbox_domains = $mydomain
 virtual_transport = lmtp:inet:dovecot:26

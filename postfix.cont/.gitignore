@@ -1,3 +1,4 @@
 data/conf/known-senders.txt
+data/conf/aliases.txt
 data/conf/users.txt
 data/queue/*
