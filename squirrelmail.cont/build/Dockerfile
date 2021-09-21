@@ -26,6 +26,9 @@ RUN curl -L https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fsnapshots.
     chown www-data:www-data /var/local/squirrelmail/attach && \
     ln -s /data/squirrelmail /var/local/squirrelmail/data && \
     # move the actual code to /var/www/html dir
-    mv /squirrelmail/* /var/www/html
+    mv /squirrelmail/* /var/www/html && \
+    # link to code from old place
+    rmdir /squirrelmail && \
+    ln -s /var/www/html /squirrelmail
 
 EXPOSE 80
