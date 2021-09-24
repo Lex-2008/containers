@@ -90,6 +90,7 @@ $plugins[8] = 'login_auth';
 $plugins[9] = 'shadowroot';
 $plugins[10] = 'folder_synch';
 $plugins[11] = 'abook_carddav';
+$plugins[12] = 'auto_relogin';
 
 $theme_css = '';
 $theme_default = 0;
