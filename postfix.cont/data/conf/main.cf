@@ -38,6 +38,10 @@ recipient_delimiter = +-
 virtual_mailbox_limit = 0
 message_size_limit = 10024024024
 
+# === opportunistic TLS for outgoing connections (for servers that support it) ===
+
+smtp_tls_security_level = may
+
 # === DKIM milter ===
 
 smtpd_milters = inet:dkim:12301
