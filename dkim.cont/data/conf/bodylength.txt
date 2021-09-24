@@ -1,2 +1,3 @@
 lists.sourceforge.net
-mailop.org
+mailop@mailop.org
+check-auth@verifier.port25.com
