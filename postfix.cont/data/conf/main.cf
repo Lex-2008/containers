@@ -45,6 +45,13 @@ smtp_tls_security_level = may
 # === DKIM milter ===
 
 smtpd_milters = inet:dkim:12301
+milter_default_action = accept
+# TODO: milter_default_action = reject for internal messages
+# but it can't be distinguished by IP,
+# because milter get checked before xclient message is received
+# maybe haproxy proxy protocol could solve it,
+# but only if squirrelmail also connects via it.
+# for now, we hope that if dkim is broken, the someone tells us about it
 
 # === Spam control ===
 
