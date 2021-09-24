@@ -34,6 +34,10 @@ virtual_mailbox_maps = texthash:/data/conf/users.txt
 virtual_mailbox_base = /dev/null
 recipient_delimiter = +-
 
+# allow up to 10Gb emails
+virtual_mailbox_limit = 0
+message_size_limit = 10024024024
+
 # === DKIM milter ===
 
 smtpd_milters = inet:dkim:12301
