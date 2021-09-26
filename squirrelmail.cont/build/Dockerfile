@@ -4,8 +4,7 @@ FROM php:7-apache
 ENV branch=stable \
     memory_limit=1700M \
     post_max_size=1600M \
-    upload_max_filesize=1500M \
-    max_execution_time=300
+    upload_max_filesize=1500M
 
 RUN curl -L https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fsnapshots.squirrelmail.org%2Fsquirrelmail-$(date +%Y%m%d)_0200-SVN.$branch.tar.bz2 >/tmp/squirrelmail.tar.bz2 && \
     # extract the file and move the actual code to /squirrelmail dir
@@ -22,7 +21,7 @@ RUN curl -L https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fsnapshots.
     mkdir -p /var/local/squirrelmail/attach && \
     chown www-data:www-data /var/local/squirrelmail/attach && \
     ln -s /data/squirrelmail /var/local/squirrelmail/data && \
-    sed "/memory_limit/s/=.*/=$memory_limit/;/post_max_size/s/=.*/=$post_max_size/;/upload_max_filesize/s/=.*/=$upload_max_filesize/;/max_execution_time/s/=.*/=$max_execution_time/;" /usr/local/etc/php/php.ini-production >$PHP_INI_DIR/php.ini && \
+    sed "/memory_limit/s/=.*/=$memory_limit/;/post_max_size/s/=.*/=$post_max_size/;/upload_max_filesize/s/=.*/=$upload_max_filesize/;" /usr/local/etc/php/php.ini-production >$PHP_INI_DIR/php.ini && \
     ln -s ../mods-available/remoteip.load /etc/apache2/mods-enabled/remoteip.load && \
     echo RemoteIPHeader X-Real-IP >/etc/apache2/mods-enabled/remoteip.conf && \
     echo RemoteIPTrustedProxy 172.17.0.0/16 >>/etc/apache2/mods-enabled/remoteip.conf && \

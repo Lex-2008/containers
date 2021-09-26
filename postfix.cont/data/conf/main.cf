@@ -34,9 +34,10 @@ virtual_mailbox_maps = texthash:/data/conf/users.txt
 virtual_mailbox_base = /dev/null
 recipient_delimiter = +-
 
-# allow up to 10Gb emails
-virtual_mailbox_limit = 0
-message_size_limit = 10024024024
+# allow up to 1Gb emails.
+# Bigger messages won't go through dovecot's LMTP (it seems to require twice as
+# much RAM as size of a message, and we have only 2Gb on this server)
+message_size_limit = 1024024024
 
 # === opportunistic TLS for outgoing connections (for servers that support it) ===
 
@@ -46,12 +47,11 @@ smtp_tls_security_level = may
 
 smtpd_milters = inet:dkim:12301
 milter_default_action = accept
-# TODO: milter_default_action = reject for internal messages
-# but it can't be distinguished by IP,
-# because milter get checked before xclient message is received
-# maybe haproxy proxy protocol could solve it,
-# but only if squirrelmail also connects via it.
-# for now, we hope that if dkim is broken, the someone tells us about it
+# TODO: milter_default_action = reject for internal messages.
+# But it can't be distinguished by IP, because milter get checked before
+# xclient message is received.  Maybe haproxy proxy protocol could solve it,
+# but only if squirrelmail also connects via it.  For now, we hope that if dkim
+# is broken, the someone tells us about it
 
 # === Spam control ===
 
