@@ -57,6 +57,11 @@ Note that it's the only container exposed to Internet and having access to the S
 * Other backend servers are [SquirrelMail][] for webmail and [Baikal][] for calendar/address book sync, both of which are implemented in plain PHP.
 SquirrelMail can use [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
 
+* SquirrelMail talks to Dovecot via [imapproxy][] which caches IMAP.
+While it doesn't give any performance benefits, it greatly decreases noise in Dovecot logs.
+
+* Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
+
 * This picture was created with [PlantUML][p1].
 
 [nginx]: nginx.cont/README.md
@@ -66,7 +71,11 @@ SquirrelMail can use [CardDav addressbook plugin][abook_carddav] to access Baika
 [SquirrelMail]: squirrelmail.cont/README.md
 [Baikal]: baikal.cont/README.md
 [abook_carddav]: https://github.com/Lex-2008/abook_carddav
-[p1]: http://www.plantuml.com/plantuml/uml/NP2nIWGn48RxUOgfbHJNBaSu40j1h2m4jOYNqHjk9hicitA-lNXht5oQGFx_-oPXTiL2jba53Xm9IIVxnaXbdtao7XF0yzKhEe_fWzDfmA8slQI3rRC050j6E8t5tla4PmwTypLPdEkdc_kxsuV7Itg3sosbw3ty1UZcrTmiQdqX7bbNJfm_9mCgYr7-fyOlse-sWixNR41fnfNFcNCcqS02xGMTzB_l-dOaQ-XhZs-1Zq46_DrGiv46gsLjUsb7ASugFm00
+[imapproxy]: https://hub.docker.com/r/cheungpat/imapproxy
+[logshow]: logshow.cont/data/html/
+[spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
+[hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
+[p1]: http://www.plantuml.com/plantuml/uml/TP2_JWCn38TtFuLdK8QkfoggX1YG41C34Z24nhHMdJyaFhY-FMgvzEugiKJ9v-zdAzvKTKNx8B1dJqWXwn4zrMtXh9mYmElDEngBSSTnwB06pMznh-si05MT4kPKzPC7E7jeZ1t9cBbzkNjyk7zwNjehNAyfUcjX16ZwARdwYxO9_i1XyiJOC-ami2YLYvM-QPjq4erjh4EPjUFWSYvfECBbjfHFkCdrg-TII89ZWVa3ZLn_zQfkx3HgRBeKB7uuFZZfyBJGsG9dMYkswlyXIRkwJp_Dtr3qVP1V
 
 
 Extra features
