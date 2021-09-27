@@ -75,7 +75,7 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [logshow]: logshow.cont/data/html/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TP2_JWCn38TtFuLdK8QkfoggX1YG41C34Z24nhHMdJyaFhY-FMgvzEugiKJ9v-zdAzvKTKNx8B1dJqWXwn4zrMtXh9mYmElDEngBSSTnwB06pMznh-si05MT4kPKzPC7E7jeZ1t9cBbzkNjyk7zwNjehNAyfUcjX16ZwARdwYxO9_i1XyiJOC-ami2YLYvM-QPjq4erjh4EPjUFWSYvfECBbjfHFkCdrg-TII89ZWVa3ZLn_zQfkx3HgRBeKB7uuFZZfyBJGsG9dMYkswlyXIRkwJp_Dtr3qVP1V
+[p1]: http://www.plantuml.com/plantuml/uml/TP2_JiCm48TtFyMDGEkXQrHPHOW1gMAW6P20mTIcEVNy1_i2wTkZfadTL6AnxE--tvrygymwSUj8D6WiM1Vv0CRcRSB86BmGRtSV81Nu7VgkWeOvplippzzzTXpXPhQfxr_gUhsv5IApPWinPFx2JlGXa5ADf89ZPFRwi7vwVAwdzWAMI-kDKc808DkIN9oYumIpHrSyaged5JWajkbiXH-x3Ln4gKPM0LsqGwTZJA4xYFDjAX_nAEVl5bEov3IIk7o0fEklNjMbAgE6fbD1mQV6lQRJfii29qE7Ogd-5wAmoqtu7VZAUjCw-WC0
 
 
 Extra features
