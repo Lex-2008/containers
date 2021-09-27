@@ -28,7 +28,7 @@ $default_charset       = 'utf-8';
 $lossy_encoding        = false;
 
 $domain                 = 'shpakovsky.ru';
-$imapServerAddress      = 'dovecot';
+$imapServerAddress      = 'imapproxy';
 $imapPort               = 143;
 $useSendmail            = false;
 $smtpServerAddress      = 'postfix';
