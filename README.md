@@ -50,27 +50,32 @@ What can you see here:
 * SMTP, HTTP, and HTTPS requests come to [nginx][] container - It manages all SSL stuff, including STARTTLS encryption layer for SMTP, and also serves static sites.
 Note that it's the only container exposed to Internet and having access to the SSL certificates.
 
-* plaintext SMTP is forwarded to [Postfix][] server - together with XCLIENT which gives Postfix information about remote server.
+* Plaintext SMTP is forwarded to [Postfix][] server - together with [XCLIENT][] command which gives Postfix information about remote server.
 
 * Postfix uses [DKIM][] milter and forwards received emails to [dovecot][] via LMTP.
 
 * Other backend servers are [SquirrelMail][] for webmail and [Baikal][] for calendar/address book sync, both of which are implemented in plain PHP.
 SquirrelMail can use [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
-
-* SquirrelMail talks to Dovecot via [imapproxy][] which caches IMAP.
-While it doesn't give any performance benefits, it greatly decreases noise in Dovecot logs.
+Note that for [performance reasons][alpine-php-perf], they use containers based on Debian, not Alpine.
 
 * Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
+
+* Not mentioned on the picture, but worth asking why these three backend servers use three different webservers (Apache, Nginx, and Lighttpd).
+
+* SquirrelMail talks to Dovecot via [imapproxy][] which caches IMAP connections.
+While it doesn't give any performance benefits, it greatly decreases noise in Dovecot logs.
 
 * This picture was created with [PlantUML][p1].
 
 [nginx]: nginx.cont/README.md
 [Postfix]: postfix.cont/README.md
+[XCLIENT]: http://www.postfix.org/XCLIENT_README.html
 [dovecot]: dovecot.cont/README.md
 [DKIM]: dkim.cont/README.md
 [SquirrelMail]: squirrelmail.cont/README.md
 [Baikal]: baikal.cont/README.md
 [abook_carddav]: https://github.com/Lex-2008/abook_carddav
+[alpine-php-perf]: http://alexey.shpakovsky.ru/en/when-not-to-use-alpine.html
 [imapproxy]: https://hub.docker.com/r/cheungpat/imapproxy
 [logshow]: logshow.cont/data/html/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
@@ -83,7 +88,7 @@ Extra features
 
 * Separate containers for SMTP security layer (ngnix) and message processing (Postfix)
 
-* Separate containers for mail processing (Postfix) and storage (Dovecot)
+* Separate containers for mail processing (Postfix) and mail storage (Dovecot)
 
 With periodically running [daily.sh](daily.sh):
 
@@ -112,7 +117,7 @@ Usage
 -----
 
 Some directories have `reload.sh` and `logrotate.sh` files to reload config files and rotate logs for relevant services.
-This stuff is still in progress.
+`logrotate.sh` file in the root of this repo will call `logrotate.sh` files in all directories.
 
 To terminate all running docker containers, run this command:
 
