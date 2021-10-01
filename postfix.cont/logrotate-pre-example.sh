@@ -1,6 +1,16 @@
-# prepend output of logshow/spam-emails.sh script to a static file
+#!/bin/bash
+# prepend output of logshow script to a static file
+
 cd /containers/nginx.cont/data/public/alexey.shpakovsky.ru/en/
-wget -q http://alexey.shpakovsky.ru/logshow/spam-emails.sh -O spam-emails-3.htm.new
-cat spam-emails-3.htm >>spam-emails-3.htm.new
-chown --reference=spam-emails-3.htm spam-emails-3.htm.new
-mv spam-emails-3.htm.new spam-emails-3.htm
+
+savelog() {
+	from="$1"
+	to="${2-$from}"
+	wget -q http://alexey.shpakovsky.ru/logshow/$from.sh -O $to.htm.new
+	cat $to.htm >>$to.htm.new
+	chown --reference=$to.htm $to.htm.new
+	mv $to.htm.new $to.htm
+}
+
+savelog spam-emails spam-emails-3
+savelog relay-attempts
