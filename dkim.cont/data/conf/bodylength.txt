@@ -1,1 +1,2 @@
 lists.sourceforge.net
+mailop@mailop.org
