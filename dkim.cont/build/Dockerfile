@@ -6,8 +6,13 @@ RUN apt-get update && \
     opendkim opendkim-tools inetutils-syslogd \
     --no-install-recommends && \
     apt-get clean && \
+    adduser --system --no-create-home --group syslog && \
     echo '*.* /data/logs/mail.log' >/etc/syslog.conf
 
+
 EXPOSE 2301
-#USER 1000:1000
-CMD syslogd && exec opendkim -x /data/conf/opendkim.conf
+#CMD syslogd && exec opendkim -x /data/conf/opendkim.conf
+CMD chown root:syslog /dev && chmod g+w /dev && \
+    runuser -u syslog syslogd && \
+    chown root:root /dev && chmod g-w /dev && \
+    exec opendkim -x /data/conf/opendkim.conf

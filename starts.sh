@@ -1,7 +1,7 @@
 cd /containers/
 
 # bind
-docker run -d -v $PWD/bind.cont/data:/data -p 53:53 -p 53:53/udp --name=bind bind
+docker run -d -v $PWD/bind.cont/data:/data -p 53:5353 -p 53:5353/udp --name=bind bind
 # mail
 docker run -d -v $PWD/dovecot.cont/data:/data -p 127.0.0.1::26 -p 127.0.0.1::143 --name=dovecot dovecot
 docker run -d -v $PWD/dkim.cont/data:/data -p 127.0.0.1::12301 --name=dkim dkim
