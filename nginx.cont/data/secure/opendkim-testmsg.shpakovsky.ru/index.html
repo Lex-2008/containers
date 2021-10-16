@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><title>DKIM signature online test</title>
+<style>
+body{margin: auto; width: 100ex}
+textarea, iframe{width:100%}
+</style>
+</head><body><h1>DKIM signature test online</h1>
+
+<p>Here you can test how changing various parts of your email will affect its
+DKIM signature validity. Test is performed using <tt>opendkim-testmsg</tt> tool
+from OpenDKIM project, version 2.11.0.</p>
+
+<p>Paste a <b>signed</b> message (including headers) into the textarea below,
+or press the <button onclick="example()">Load example</button> button to
+load an example message.</p>
+
+<script>
+function example(){
+  fetch('example.eml')
+    .then(response => response.text())
+    .then(data => document.getElementsByName('a')[0].value=data);
+}
+</script>
+
+<form action="/cgi-bin/test.sh" method="post" target="result">
+  <textarea name="a" rows="25" cols="100" placeholder="Paste your full email (with headers) here"></textarea>
+  <p>
+    By submitting this form you accept the accompanying
+    <a href="/privacy.txt">Privacy Policy</a>.
+    <input type="submit">
+  </p>
+</form>
+<iframe name="result" style="height:5ex" src="data:text/plain,Result will appear here"></iframe>
+</body>
+</html>

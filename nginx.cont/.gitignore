@@ -1,5 +1,6 @@
 data/cert/*
 data/public/*
 data/secure/*
+!data/secure/opendkim-testmsg.shpakovsky.ru
 data/passwd/*
 data/conf/servers.conf

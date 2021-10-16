@@ -67,6 +67,8 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 
 * Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
 
+* An [opendkim-testmsg][] backend server provides a [DKIM signature online test][opendkim-testmsg-online].
+
 * This picture was created with [PlantUML][p1].
 
 [nginx]: nginx.cont/README.md
@@ -82,9 +84,11 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [bind]: bind.cont/README.md
 [dyndns]: dyndns.cont/README.md
 [logshow]: logshow.cont/data/html/
+[opendkim-testmsg]: opendkim-testmsg.cont/README.md
+[opendkim-testmsg-online]: https://opendkim-testmsg.shpakovsky.ru/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TP2_JiCm48TtFyMDG9k1DQgY8iI0L37G34Z0O6hJdEe_nhv0ylQuYN6IIYn9xljzTwVSDX3tr6h56XGIf7RKWv3XuD4HMiFOwyqx54K5veYcAw4XSklX6TPl9cXoSBNQrtVFTRtRNq_w1nfHWZ213Oq34xs9O9p1nWAADiicj4vmaem5YYzmDj0dThC1YPHmthjwkTyzFZpLI_iMDXjfH5Mn18ODEHrR_pQ84-h9Kz4xan8qAf8-M_PR7YnDOlGIAq7Dng7cpddRzIn_BUM8ino-MlHUAirHiNa1XRhyrOiyndb16heKuaKvdhXAfvuEEDTIcDD_cvGzXiR-9BwLHhHQ_G80
+[p1]: http://www.plantuml.com/plantuml/uml/TP0_J_Cm48TtVufJf_UbpS0QLLKHOa2g66W6960mjMbFzH_Zkq3xxN5JrqagiIJnSuz_bxibiOpSMYDsg3He6_W8IjCcOc3qJeZNctUegWMuBRf33JlcCEkUD7jpP3d0l-cwkNjkcjNwVwz_e5CrA4UYkzWnTNG9d3F4-G1LMsH7RL2IjH34wGN14t_YOH2GIGsdljEN-zNZmrCpjczXFjTEBHOYWwv3gPwlNZgeFThUCyaxaHei6jQnMFvRRpptOl8ogy4Cuj3A4A8_74Nv6ii95vc-MenH6olHYE41AdCzwbKzbKk373eMqaObxgN9g-uNEDHoCV_En0VjJjDNh8ajRISW2IumCr6Y_knW_9Ps_cVCqq3NKLbO9jXQymi0
 
 
 Extra features

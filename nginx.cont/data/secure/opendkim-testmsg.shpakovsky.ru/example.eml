@@ -1,0 +1,12 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=shpakovsky.ru;
+     s=postfix; t=1634333002; r=y;
+     bh=pgAiAFfTfUaEQnXZovg+sCMsEhi40aifwX3+V1TobJI=; h=Date:From:To;
+     b=N8ck6H16XHh0XkWANKH5KF1iz+txtfazivsWFqU+ibd9YgTg41bU0/T/5XY1EIRKV
+     8nL4yCWfJTIYEU3ySt2xmYtoVR3DUdH2C7AcGvDVgVi1BPC8RR4YYwfxpXbimgPtAx
+     wu65mmTBiRwDV1UR3LStJieDXwLu/HOELL61xk7w=
+Date: Fri, 15 Oct 2021 23:23:22 +0200
+Subject: dkim test
+From: "Alexey Shpakovsky" <alexey@shpakovsky.ru>
+To: "Alexey Shpakovsky" <alexey@shpakovsky.ru>
+
+This is a test message

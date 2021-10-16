@@ -1,0 +1,33 @@
+Privacy policy for the opendkim-testmsg online tool
+===================================================
+
+A friendly reminder: you can always install `opendkim-tools` package on your
+system and use `opendkim-testmsg` to do the same as this website does :)
+
+Requests to main page or this privacy policy are not logged.
+
+For the purpose of preventing abuse and checking if this service is used at
+all, the following data is stored for each _submitted_ request (i.e. when you
+submit the email for testing):
+* IP
+* Datetime
+* User-Agent (browser version)
+
+This data is stored indefinitely. To request data deletion, please kindly
+include your IP address(es) or datetime(s) of submitted request(s).
+
+Email is NOT stored, but it might be written to temporary files as part of
+usual opendkim-testmsg operation. These files are deleted when opendkim-testmsg
+finishes (i.e. when you receive the response, they are already deleted).
+
+Saying that, I still would advise you against submitting sensitive information
+into strangers' Internet websites, no matter what they say in their privacy
+policy, and consider using opendkim-testmsg yourself.
+
+
+Worth noting that in order to perform DKIM signature verification, this tool
+performs DNS requests, and they might be logged by DNS servers. Usually DKIM
+signature is verified as soon as email gets received by destination server -
+i.e. within seconds after it was sent, but if someone sent you an email with a
+unique "selector" - they might know _when_ you are checking DKIM signature
+using this or any other tool.
