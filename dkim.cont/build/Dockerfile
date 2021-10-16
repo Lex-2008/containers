@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 MAINTAINER https://github.com/Lex-2008
 
 RUN apt-get update && \
