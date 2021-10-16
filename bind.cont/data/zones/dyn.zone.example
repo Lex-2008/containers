@@ -1,0 +1,15 @@
+$ORIGIN .
+$TTL 1	; 1 second
+dyn.shpakovsky.ru	IN SOA	shpakovsky.ru. alexey-bind.shpakovsky.ru. (
+				2021101123 ; serial
+				1          ; refresh (1 second)
+				1          ; retry (1 second)
+				1          ; expire (1 second)
+				1          ; minimum (1 second)
+				)
+			NS	shpakovsky.ru.
+			A	109.120.165.193
+			TXT	"v=spf1 -all"
+			AAAA	2a02:440:0:13::559
+$ORIGIN dyn.shpakovsky.ru.
+*			TXT	"v=spf1 -all"

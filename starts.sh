@@ -1,5 +1,7 @@
 cd /containers/
 
+# bind
+docker run -d -v $PWD/bind.cont/data:/data -p 53:53 -p 53:53/udp --name=bind bind
 # mail
 docker run -d -v $PWD/dovecot.cont/data:/data -p 127.0.0.1::26 -p 127.0.0.1::143 --name=dovecot dovecot
 docker run -d -v $PWD/dkim.cont/data:/data -p 127.0.0.1::12301 --name=dkim dkim
@@ -9,6 +11,8 @@ docker run -d -p 127.0.0.1::143 --link dovecot:dovecot -e SERVER_HOSTNAME=doveco
 docker run -d -v $PWD/baikal.cont/config:/var/www/baikal/config -v $PWD/baikal.cont/Specific:/var/www/baikal/Specific -p 127.0.0.1:8002:80 --name=baikal ckulka/baikal:nginx
 docker run -d -v $PWD/squirrelmail.cont/data:/data -p 127.0.0.1:8001:80 --link imapproxy:imapproxy --link postfix:postfix --link baikal:baikal --name=squirrelmail squirrelmail
 docker run -d -v $PWD/logshow.cont/data:/data -v $PWD/nginx.cont/data/logs:/nginx-logs -v $PWD/postfix.cont/data/logs:/postfix-logs -p 127.0.0.1:8003:8000 --name=logshow logshow
+docker run -d -v $PWD/dyndns.cont/data:/data -v $PWD/bind.cont/data/key.conf:/key.conf --link bind:bind -p 127.0.0.1:8004:8000 --name=dyndns dyndns
+
 
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx

@@ -12,7 +12,10 @@ and forwards plaintext smtp to backend
 
 * Uses same certificates for both items above
 
-* Optionally, serves static sites
+* Provides basic HTTP authentification
+for some backend services
+
+* Optionally, serves some static sites
 
 Installation
 ------------
@@ -41,8 +44,11 @@ Example:
 			location /.git/    { return 301 https://github.com/Lex-2008/Lex-2008.github.io/; }
 		}
 
-* Add `data/passwd.txt` file with encrypted passwords to access SquirrelMail.
+* Add `data/passwd/mail.txt` file with encrypted passwords to access SquirrelMail.
 You can use passwd file from the dovecot container and [Login Authentication][login] SquirrelMail plugin to automate login process,
 or some separate username/password combination for extra security.
 
+* Add `data/passwd/dyndns.txt` file with encrypted passwords to use [DynDNS][].
+
 [login]: https://squirrelmail.org/plugin_view.php?id=34
+[DynDNS]: ../dyndns.cont/README.md

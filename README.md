@@ -58,12 +58,14 @@ Note that it's the only container exposed to Internet and having access to the S
 SquirrelMail can use [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
 Note that for [performance reasons][alpine-php-perf], they use containers based on Debian, not Alpine.
 
-* Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
-
-* Not mentioned on the picture, but worth asking why these three backend servers use three different webservers (Apache, Nginx, and Lighttpd).
-
 * SquirrelMail talks to Dovecot via [imapproxy][] which caches IMAP connections.
 While it doesn't give any performance benefits, it greatly decreases noise in Dovecot logs.
+
+* DNS requests come to the [bind][] container which serves as _authoritative_ DNS server for _dyn.shpakovsky.ru_ zone.
+
+* Some HTTP requests are forwarded from nginx to [dyndns][] container which uses `nsupdate` to change the dynamic zone in the bind container.
+
+* Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
 
 * This picture was created with [PlantUML][p1].
 
@@ -77,10 +79,12 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [abook_carddav]: https://github.com/Lex-2008/abook_carddav
 [alpine-php-perf]: http://alexey.shpakovsky.ru/en/when-not-to-use-alpine.html
 [imapproxy]: https://hub.docker.com/r/cheungpat/imapproxy
+[bind]: bind.cont/README.md
+[dyndns]: dyndns.cont/README.md
 [logshow]: logshow.cont/data/html/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TP2_JiCm48TtFyMDGEkXQrHPHOW1gMAW6P20mTIcEVNy1_i2wTkZfadTL6AnxE--tvrygymwSUj8D6WiM1Vv0CRcRSB86BmGRtSV81Nu7VgkWeOvplippzzzTXpXPhQfxr_gUhsv5IApPWinPFx2JlGXa5ADf89ZPFRwi7vwVAwdzWAMI-kDKc808DkIN9oYumIpHrSyaged5JWajkbiXH-x3Ln4gKPM0LsqGwTZJA4xYFDjAX_nAEVl5bEov3IIk7o0fEklNjMbAgE6fbD1mQV6lQRJfii29qE7Ogd-5wAmoqtu7VZAUjCw-WC0
+[p1]: http://www.plantuml.com/plantuml/uml/TP2_JiCm48TtFyMDG9k1DQgY8iI0L37G34Z0O6hJdEe_nhv0ylQuYN6IIYn9xljzTwVSDX3tr6h56XGIf7RKWv3XuD4HMiFOwyqx54K5veYcAw4XSklX6TPl9cXoSBNQrtVFTRtRNq_w1nfHWZ213Oq34xs9O9p1nWAADiicj4vmaem5YYzmDj0dThC1YPHmthjwkTyzFZpLI_iMDXjfH5Mn18ODEHrR_pQ84-h9Kz4xan8qAf8-M_PR7YnDOlGIAq7Dng7cpddRzIn_BUM8ino-MlHUAirHiNa1XRhyrOiyndb16heKuaKvdhXAfvuEEDTIcDD_cvGzXiR-9BwLHhHQ_G80
 
 
 Extra features

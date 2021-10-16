@@ -1,5 +1,5 @@
 data/cert/*
 data/public/*
 data/secure/*
-data/conf/passwd.txt
+data/passwd/*
 data/conf/servers.conf
