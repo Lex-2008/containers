@@ -17,8 +17,12 @@ expr "$HTTP_X_REAL_IP" : '.*:' >/dev/null && atype=AAAA
 
 test -z "$atype" && exit 1
 
-echo "server bind
+grep -qsF "$HTTP_X_REAL_IP" "/tmp/dyndns-$HTTP_X_REAL_USER-$atype" && exit 0
+
+echo "server bind 5353
 zone $zone
 del $host $atype
 add $host 1 $atype $HTTP_X_REAL_IP
 send" | nsupdate -k /key.conf
+
+echo "$HTTP_X_REAL_IP" >"/tmp/dyndns-$HTTP_X_REAL_USER-$atype"
