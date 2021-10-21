@@ -1,15 +1,11 @@
-# ensure list of postfix users matches list of dovecot users
-# TODO: this must be part of adduser.sh script
-#ls dovecot.cont/data/mail/ | sed 's/.*/& ok/' >postfix.cont/data/conf/users.txt
-# TODO: optionally ensure list of nginx mail users matches list of dovecot mail users
-
 docker exec bind rndc -p9533 sync -clean
 
 rm -f /tmp/emails.*
 
 for user in `ls dovecot.cont/data/mail/`; do
 	# get emails of all user's contacts:
-	# * from squirrelmail addressbook
+	# from squirrelmail addressbook
+	test -f squirrelmail.cont/data/squirrelmail/$user.abook || continue
 	cut -d'|' -f4 squirrelmail.cont/data/squirrelmail/$user.abook >/tmp/emails.txt
 	# from baikal (note that for this to work, user must be registered
 	# there with same email)
