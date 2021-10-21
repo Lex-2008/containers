@@ -3,7 +3,7 @@
 #ls dovecot.cont/data/mail/ | sed 's/.*/& ok/' >postfix.cont/data/conf/users.txt
 # TODO: optionally ensure list of nginx mail users matches list of dovecot mail users
 
-docker exec bind rndc sync -clean
+docker exec bind rndc -p9533 sync -clean
 
 rm -f /tmp/emails.*
 
