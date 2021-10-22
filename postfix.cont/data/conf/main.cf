@@ -3,7 +3,6 @@
 mydomain=shpakovsky.ru
 myhostname=$mydomain
 compatibility_level=3
-inet_protocols=ipv4
 
 # === for running in container ===
 mynetworks_style = subnet
