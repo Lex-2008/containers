@@ -47,15 +47,15 @@ Picture worth 1k words
 
 What can you see here:
 
-* SMTP, HTTP, and HTTPS requests come to [nginx][] container - It manages all SSL stuff, including STARTTLS encryption layer for SMTP, and also serves static sites.
-Note that it's the only container exposed to Internet and having access to the SSL certificates.
+* IMAP, SMTP, HTTP, and HTTPS requests come to [nginx][] container - It manages all SSL stuff, including STARTTLS encryption layer for SMTP, and also serves static sites.
+Note that it's the only container directly exposed to Internet and having permanent to the SSL certificates.
 
 * Plaintext SMTP is forwarded to [Postfix][] server - together with [XCLIENT][] command which gives Postfix information about remote server.
 
 * Postfix uses [DKIM][] milter and forwards received emails to [dovecot][] via LMTP.
 
-* Other backend servers are [SquirrelMail][] for webmail and [Baikal][] for calendar/address book sync, both of which are implemented in plain PHP.
-SquirrelMail can use [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
+* Other mail-related backend servers are [SquirrelMail][] for webmail and [Baikal][] for calendar/address book sync, both of which are implemented in plain PHP.
+SquirrelMail uses [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
 Note that for [performance reasons][alpine-php-perf], they use containers based on Debian, not Alpine.
 
 * SquirrelMail talks to Dovecot via [imapproxy][] which caches IMAP connections.
