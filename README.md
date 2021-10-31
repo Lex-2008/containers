@@ -65,6 +65,8 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 
 * Some HTTP requests are forwarded from nginx to [dyndns][] container which uses `nsupdate` to change the dynamic zone in the bind container.
 
+* A manually-started [dehydrated][] container uses ACME in DNS mode to issue Let's Encrypt certificates.
+
 * Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
 
 * An [opendkim-testmsg][] backend server provides a [DKIM signature online test][opendkim-testmsg-online].
@@ -83,12 +85,13 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [imapproxy]: https://hub.docker.com/r/cheungpat/imapproxy
 [bind]: bind.cont/README.md
 [dyndns]: dyndns.cont/README.md
+[dehydrated]: dehydrated.cont/README.md
 [logshow]: logshow.cont/data/html/
 [opendkim-testmsg]: opendkim-testmsg.cont/README.md
 [opendkim-testmsg-online]: https://opendkim-testmsg.shpakovsky.ru/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TP5FJm8n4CNl_HGJJYhimUk6R336Wmdn87imKG-LLfZGFxKpg_3jtR9TbYNXKZflVdrlc5qGoyYDDMABIeEsWG-WDAqZ1aRlX7Y_-uIYgC1jqErBs3A7sV6asOT3AzigdQaYom5kfglwuRMkbwlRuV4NEbM2SYIEDaTD7LmhT8wYAw1eJh2Z9YZ9MWZYzWU29_x6_M3GAoMatEdRu_BvwQKUq_SmdskdgafaeKlekztJFa7jq0wSQRcab63Hi8udol_gjUS1J5odbM0iXppXI4yRwWtIFKI_FuZJxJfCFmt6g8sLQCHvaGQyMC55lwY6g6mw0jAc9UwaoPzW6FiSoyqypiG7xT9M2jR4bZOJa0Izc3NHMrr9YArk_8Qs_c_KIF_eqYi3YrPihFa7
+[p1]: http://www.plantuml.com/plantuml/uml/TL8zJyCm4DtzAqwTW3O3QrHLHOW1gMAW6P20mTIciUeFOr-W-VVOpSUraReuT--UtxFUPHsH1soCPhKI4gJns8AGSHUKH-KiO-ztdr0KAx1xPOybr8X-SJhZuiCgmrENpzn5WnvkvjlguRMgDjjRklobh2X1sCXECYTCj3O1dIBh6YYQaMnZumL7oLZ4z07l8dwh8maCI0dPT_xsk7b-UgaksVUmN4ehLYlM0vt3CEsk3WxYe0pnTE9bf0IZDCemijolt3aaOkBrM0awoT4B2Ky9ZJQvzi4TMpPMrydnfr4XI6suqkoyWK9F8vZCqtWqw4Kl2IbfhWvSzokWPv_Jyf0YcZalRKwbG1dHnFqCU8G1x356KjSSjDl7slrDyQdIfRcGTIj2gWIjbR0kaCc_G-DkyTIdtVETaMoTT1gZ_m40
 
 
 Extra features
