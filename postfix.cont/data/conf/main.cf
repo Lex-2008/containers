@@ -3,6 +3,7 @@
 mydomain=shpakovsky.ru
 myhostname=$mydomain
 compatibility_level=3
+smtp_address_preference=ipv4
 
 # === for running in container ===
 mynetworks_style = subnet
