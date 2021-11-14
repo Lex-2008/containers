@@ -54,6 +54,8 @@ Note that it's the only container directly exposed to Internet and having perman
 
 * Postfix uses [DKIM][] milter and forwards received emails to [dovecot][] via LMTP.
 
+* Outgoing mail is sent either directly or via [padlock][] SMTP proxy server.
+
 * Other mail-related backend servers are [SquirrelMail][] for webmail and [Baikal][] for calendar/address book sync, both of which are implemented in plain PHP.
 SquirrelMail uses [CardDav addressbook plugin][abook_carddav] to access Baikal addressbook.
 Note that for [performance reasons][alpine-php-perf], they use containers based on Debian, not Alpine.
@@ -78,6 +80,7 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [XCLIENT]: http://www.postfix.org/XCLIENT_README.html
 [dovecot]: dovecot.cont/README.md
 [DKIM]: dkim.cont/README.md
+[padlock]: padlock.cont/README.md
 [SquirrelMail]: squirrelmail.cont/README.md
 [Baikal]: baikal.cont/README.md
 [abook_carddav]: https://github.com/Lex-2008/abook_carddav
@@ -91,7 +94,7 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [opendkim-testmsg-online]: https://opendkim-testmsg.shpakovsky.ru/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TL8zJyCm4DtzAqwTW3O3QrHLHOW1gMAW6P20mTIciUeFOr-W-VVOpSUraReuT--UtxFUPHsH1soCPhKI4gJns8AGSHUKH-KiO-ztdr0KAx1xPOybr8X-SJhZuiCgmrENpzn5WnvkvjlguRMgDjjRklobh2X1sCXECYTCj3O1dIBh6YYQaMnZumL7oLZ4z07l8dwh8maCI0dPT_xsk7b-UgaksVUmN4ehLYlM0vt3CEsk3WxYe0pnTE9bf0IZDCemijolt3aaOkBrM0awoT4B2Ky9ZJQvzi4TMpPMrydnfr4XI6suqkoyWK9F8vZCqtWqw4Kl2IbfhWvSzokWPv_Jyf0YcZalRKwbG1dHnFqCU8G1x356KjSSjDl7slrDyQdIfRcGTIj2gWIjbR0kaCc_G-DkyTIdtVETaMoTT1gZ_m40
+[p1]: http://www.plantuml.com/plantuml/uml/TL8zJyCm4DtzAqwTW3O3QrHLHOW1gGBKPYW21XERnge_Z7s1vj_Z96xS1bWSttlFxrxENdga3cibIIKO1wuiDi2uBvsmA8mcvENg3R9i0Nedz2672j7EkjNFNhLGD5HXxIglqCB5T5FSh8jYjRbCXz-5PZamxKbdqs6iqG7e7KbVG5OFOkrhooXoGZo63rZZyKCSpgjhcC-vPej5yZrIERHnfjlRrVtTGq4YsdUmb4bJxdl9Y8h6aOlAFxaOXUs5IXuow5ea1oKaSZUep1Sl3IPXq4Ki1ndiqXyal1tiz6dzk7sEDXrYdJaqPDZzFd8K-yzQECUbeaAIqoB470zgn0TwQ11DpmNXcgZOKndlBuK_bKKonfaOotKxcmovH-Lt4w0UZc34IBBwhuCqEr-Pxp4-TZflpdZLC1TsBBsPXFK36JsyHFVNVsAH0oqL9ylWKolv0m00
 
 
 Extra features

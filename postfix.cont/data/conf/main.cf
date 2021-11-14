@@ -40,9 +40,9 @@ recipient_delimiter = +-
 # much RAM as size of a message, and we have only 2Gb on this server)
 message_size_limit = 1024024024
 
-# === opportunistic TLS for outgoing connections (for servers that support it) ===
-
-smtp_tls_security_level = may
+# use dedicated mail proxy for selected recepients
+transport_maps = texthash:/data/conf/transport_maps.txt
+smtp_host_lookup = dns, native
 
 # === DKIM milter ===
 
