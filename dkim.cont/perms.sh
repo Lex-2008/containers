@@ -1,3 +1,3 @@
 cd "${0%/*}"
-mkdir -p data/key data/logs
+mkdir -p data/key
 chmod -R u=rX,go= data/key

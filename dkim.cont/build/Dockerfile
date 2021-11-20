@@ -10,4 +10,4 @@ RUN apt-get update && \
 
 
 EXPOSE 2301
-CMD syslogd && exec opendkim -x /data/conf/opendkim.conf
+CMD ["opendkim", "-x", "/data/conf/opendkim.conf"]
