@@ -6,7 +6,7 @@ docker run -d -v $PWD/bind.cont/data:/data -p 53:5353 -p 53:5353/udp --name=bind
 docker run -d -v $PWD/dovecot.cont/data:/data -p 127.0.0.1::26 -p 127.0.0.1::143 -p 127.0.0.1:1433:1433 --name=dovecot dovecot
 docker run -d -v $PWD/dkim.cont/data:/data -p 127.0.0.1::12301 --name=dkim dkim
 docker run -d -v $PWD/padlock.cont/data:/data -p 127.0.0.1::1025 --name=padlock padlock
-docker run -d -v $PWD/postfix.cont/data:/data -p 127.0.0.1:2525:25 --link dovecot:dovecot --link dkim:dkim --link padlock:padlock --name=postfix postfix
+docker run -d -v $PWD/postfix.cont/data:/data -p 127.0.0.1:2525:26 --link dovecot:dovecot --link dkim:dkim --link padlock:padlock --name=postfix postfix
 docker run -d -p 127.0.0.1::143 --link dovecot:dovecot -e SERVER_HOSTNAME=dovecot -e FORCE_TLS=no -e CACHE_EXPIRATION_TIME=606 --name=imapproxy cheungpat/imapproxy
 # webs
 docker run -d -v $PWD/baikal.cont/config:/var/www/baikal/config -v $PWD/baikal.cont/Specific:/var/www/baikal/Specific -p 127.0.0.1:8002:80 --name=baikal ckulka/baikal:nginx

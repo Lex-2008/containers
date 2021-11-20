@@ -4,6 +4,7 @@ mydomain=shpakovsky.ru
 myhostname=$mydomain
 compatibility_level=3
 smtp_address_preference=ipv4
+maximal_queue_lifetime=2d
 
 # === for running in container ===
 mynetworks_style = subnet
@@ -46,13 +47,19 @@ smtp_host_lookup = dns, native
 
 # === DKIM milter ===
 
+# NOTE: next line is overwritten for incoming connections to port 26 in
+# master.cf (see Dockerfile). This way, messages from outside (forwarded from
+# nginx to port 26) skip dkim verification, but messages from squirrelmail do
+# not. Thus, we can use milter_default_action=reject here, since it will
+# concern only _outgoing_ messages, while incoming will be delivered even if
+# milter goes down.
+
 smtpd_milters = inet:dkim:12301
-milter_default_action = accept
-# TODO: milter_default_action = reject for internal messages.
-# But it can't be distinguished by IP, because milter get checked before
+milter_default_action = reject
+# NOTE: we can't use milter_maps here,
+# because it can't be distinguished by IP, because milter get checked before
 # xclient message is received.  Maybe haproxy proxy protocol could solve it,
-# but only if squirrelmail also connects via it.  For now, we hope that if dkim
-# is broken, the someone tells us about it
+# but only if squirrelmail also connects via it.
 
 # === Spam control ===
 
