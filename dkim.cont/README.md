@@ -8,10 +8,13 @@ Installation
 
 * (optionally) edit other settings in that file as you like, use [opendkim.conf man page][man-conf] for more info
 
+
 [man-conf]: http://www.opendkim.org/opendkim.conf.5.html
 
-* (optionally) edit the `data/conf/bodylength.txt` to specify domains of mailing lists (where you send mails to),
+* (optionally) edit the `data/conf/bodylength.txt` to specify emails of mailing lists (where you send mails to),
 which might append text at the end of your messages (read more about bodylength to understand this).
+
+* (optionally) edit the `data/conf/dontsignto.txt` file to specify emails mail to which should not be signed at all.
 
 * Generate new key (specify your domain instead of shpakovsky.ru):
 

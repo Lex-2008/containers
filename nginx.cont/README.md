@@ -15,7 +15,24 @@ and forwards plaintext smtp to backend
 * Provides basic HTTP authentification
 for some backend services
 
+* Implements two [mail\_auth][] servers:
+one which forwards only _non-authenticated_ SMTP connections to localhost:2525 backend,
+and another one which performs an [HTTP Basic][] auth check against a list of username-password pairs.
+Note that this is the same file used for basic auth for webmail interface in the bullet point above.
+
+* Uses servers from above bullet point
+to forward SMTP and IMAP connections to backend servers
+(SMTP server should support [XCLIENT][] command,
+IMAP server should support [HAproxy PROXY protocol][ha-proxy]).
+
+* Failed SMTP/POP3/IMAP login attempts are logged to a separate file.
+
 * Optionally, serves some static sites
+
+[mail\_auth]: http://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html#protocol
+[HTTP Basic]: http://alexey.shpakovsky.ru/en/using-http-basic-auth-for-nginx-mail-auth-http-server.html
+[XCLIENT]: http://nginx.org/en/docs/mail/ngx_mail_proxy_module.html#xclient
+[ha-proxy]: http://www.haproxy.org/download/1.5/doc/proxy-protocol.txt
 
 Installation
 ------------
@@ -23,30 +40,20 @@ Installation
 * Replace "shpakovsky.ru" with your server name in `data/conf/nginx.conf` file.
 
 * Generate SSL keys and put them in `data/cert` directory.
-Certificate generation _is left as exercise to the reader_,
-but I just run [`dehydrated -c`][] manually and copy these two files:
+You can do it either manually, or use [dehydrated][] container.
 
-		dehydrated/certs/shpakovsky.ru/fullchain.pem
-		dehydrated/certs/shpakovsky.ru/privkey.pem
+[dehydrated]: dehydrated.cont/README.md
 
-	Yes, I know it's supposed to be automated, but my DNS provider is not, and Let's Encrypt sends me reminder emails anyway.
+* (optionally) create `data/conf/servers.conf` file ([example provided][servers-ex]) and add your servers there.
 
-[dehydrated]: https://dehydrated.io/
-
-* (optionally) create `data/conf/servers.conf` file and add your servers there.
-Example:
-
-		server {
-			listen              80;
-			server_name         alexey.shpakovsky.ru;
-			root                /data/public/alexey.shpakovsky.ru;
-			access_log          /data/logs/alexey.log.gz combined gzip;
-			location /.git/    { return 301 https://github.com/Lex-2008/Lex-2008.github.io/; }
-		}
+[servers-ex]: data/conf/servers-example.conf
 
 * Add `data/passwd/mail.txt` file with encrypted passwords to access SquirrelMail.
-You can use passwd file from the dovecot container and [Login Authentication][login] SquirrelMail plugin to automate login process,
-or some separate username/password combination for extra security.
+It's recommended to use passwd file from the dovecot container
+and [Login Authentication][login] SquirrelMail plugin to automate login process.
+While you could also have some separate username/password combination for extra security,
+in current configuration it would break authentication with IMAP clients.
+You can of course change the configuration to use different passwords for IMAP clients and webmail.
 
 * Add `data/passwd/dyndns.txt` file with encrypted passwords to use [DynDNS][].
 

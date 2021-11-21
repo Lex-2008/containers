@@ -1,9 +1,7 @@
 # === global config ===
-
 mydomain=shpakovsky.ru
 myhostname=$mydomain
 compatibility_level=3
-smtp_address_preference=ipv4
 maximal_queue_lifetime=2d
 
 # === for running in container ===
@@ -11,6 +9,7 @@ mynetworks_style = subnet
 queue_directory = /data/queue
 smtpd_authorized_xclient_hosts=$mynetworks
 
+# === logging ===
 maillog_file = /data/logs/mail.log
 maillog_file_prefixes=/data/logs
 
@@ -41,25 +40,26 @@ recipient_delimiter = +-
 # much RAM as size of a message, and we have only 2Gb on this server)
 message_size_limit = 1024024024
 
+# === sending ===
+smtp_address_preference=ipv4
+
 # use dedicated mail proxy for selected recepients
 transport_maps = texthash:/data/conf/transport_maps.txt
 smtp_host_lookup = dns, native
 
-# === DKIM milter ===
-
-# NOTE: next line is overwritten for incoming connections to port 26 in
-# master.cf (see Dockerfile). This way, messages from outside (forwarded from
-# nginx to port 26) skip dkim verification, but messages from squirrelmail do
-# not. Thus, we can use milter_default_action=reject here, since it will
-# concern only _outgoing_ messages, while incoming will be delivered even if
-# milter goes down.
+# DKIM milter (for signing outgoing mail only).
+# Next line is overwritten for incoming connections to port 26 in master.cf
+# (see Dockerfile). Messages from outside are forwarded from nginx to port 26
+# and skip dkim milter, but messages from squirrelmail do not. Thus, we can use
+# milter_default_action=reject here, since it will concern only _outgoing_
+# messages, while incoming will be delivered even if milter goes down. NOTE: we
+# can't use milter_maps here, because it can't be distinguished by IP, because
+# milter get checked before xclient message is received.  Maybe haproxy proxy
+# protocol could solve it, but only if squirrelmail also connects via it.
 
 smtpd_milters = inet:dkim:12301
 milter_default_action = reject
-# NOTE: we can't use milter_maps here,
-# because it can't be distinguished by IP, because milter get checked before
-# xclient message is received.  Maybe haproxy proxy protocol could solve it,
-# but only if squirrelmail also connects via it.
+
 
 # === Spam control ===
 

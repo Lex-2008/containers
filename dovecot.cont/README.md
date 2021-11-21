@@ -4,13 +4,23 @@ Dovecot with LMTP and Sieve
 Features
 --------
 
-* Receives mail from postfix via LMTP
+* Exposes two ports for IMAP clients: 143, as usual, and 1433 for IMAP behind [haproxy PROXY][ha-proxy] protocol
+
+* Receives mail from postfix via LMTP (port 26)
 
 * Sorts received mail with Sieve
 
 * Also sorts "sent" mail!
 
+* Auto-deletes messages in Trash folder after 30 days
+
+* considers both `+` and `-` as "recipient delimiters",
+so you can use both "user+site@example.com" and "user-site@example.com" for registering on websites -
+they both will be delivered to "user@example.com", and you can easily track who leaked your email.
+
 * List of users with passwords stored in single file
+
+[ha-proxy]: https://wiki2.dovecot.org/HAProxy
 
 Installation
 ------------
@@ -58,7 +68,9 @@ To deliver email to this dovecot from your postfix, add this to your `main.cf` f
 where `dkim` is IP address or hostname of VM or container where this milter is running,
 and `lmtp_host_lookup = native` might be needed if IP address is stored in `/etc/hosts` file.
 
-To read email from your SquirrelMail, just use it as a normal IMAP server.
+To read email from mail client, just use it as a normal IMAP server.
+
+If IMAP server is behind proxy, use HAproxy [PROXY][ha-proxy] protocol and port 1433
 
 Used sources
 ------------
@@ -67,3 +79,5 @@ Used sources
 * <https://doc.dovecot.org/configuration_manual/protocols/lmtp_server/>
 * <https://doc.dovecot.org/configuration_manual/howto/postfix_dovecot_lmtp/>
 * <https://doc.dovecot.org/configuration_manual/authentication/passwd_file/>
+* <https://dovecot.org/pipermail/dovecot/2015-October/102236.html>
+* <https://wiki2.dovecot.org/HAProxy>

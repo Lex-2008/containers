@@ -48,7 +48,7 @@ Picture worth 1k words
 What can you see here:
 
 * IMAP, SMTP, HTTP, and HTTPS requests come to [nginx][] container - It manages all SSL stuff, including STARTTLS encryption layer for SMTP, and also serves static sites.
-Note that it's the only container directly exposed to Internet and having permanent to the SSL certificates.
+Note that it's the only container directly exposed to Internet and having access to the SSL certificates.
 
 * Plaintext SMTP is forwarded to [Postfix][] server - together with [XCLIENT][] command which gives Postfix information about remote server.
 
