@@ -14,7 +14,7 @@ docker run -d -v $PWD/squirrelmail.cont/data:/data -p 127.0.0.1:8001:80 --link i
 docker run -d -v $PWD/logshow.cont/data:/data -v $PWD/nginx.cont/data/logs:/nginx-logs -v $PWD/postfix.cont/data/logs:/postfix-logs -p 127.0.0.1:8003:8000 --name=logshow logshow
 docker run -d -v $PWD/dyndns.cont/data:/data -v $PWD/bind.cont/data/key.conf:/key.conf --link bind:bind -p 127.0.0.1:8004:8000 --name=dyndns dyndns
 docker run -d -v $PWD/opendkim-testmsg.cont/data:/data -p 127.0.0.1:8005:8000 --name=opendkim-testmsg opendkim-testmsg
-
+docker run -d -v $PWD/calc.cont/data:/data -p 127.0.0.1:8006:8000 --name=calc calc
 
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx
