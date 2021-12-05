@@ -12,8 +12,6 @@ Features
 
 * Also sorts "sent" mail!
 
-* Auto-deletes messages in Trash folder after 30 days
-
 * considers both `+` and `-` as "recipient delimiters",
 so you can use both "user+site@example.com" and "user-site@example.com" for registering on websites -
 they both will be delivered to "user@example.com", and you can easily track who leaked your email.
@@ -55,6 +53,20 @@ and `out.sieve` for filtering outgoing email.
 	and run the `daily.sh` script in parent dir.
 
 	Note that `elsif` assumes there are other conditions above.
+
+* To auto-delete (expunge) old messages (say, from Trash and spam),
+create `expunge.txt` files next to each of the user's Maildir directories,
+with format like this:
+
+		Spam 7d
+		Trash 30d
+
+	to auto-delete messages from Spam folder 7 days, and from Trash - 30 days
+	after they were received.
+
+	Deletion itself is done by `data/expunge.sh` script which
+	should be run inside container every day.
+	You can add `daily.sh` from parent dir to your host crontab.
 
 Usage
 -----
