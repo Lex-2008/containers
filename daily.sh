@@ -13,10 +13,10 @@ for user in `ls dovecot.cont/data/mail/`; do
 	sed 's/^\s*//;s/\s$//' /tmp/emails.txt | sort -u >/tmp/emails.$user
 
 	# update sieve auto-trash filter, if user has it
-	grep -qs '### auto-trash ###' dovecot.cont/data/sieve/$user.sieve || continue
-	sed -i '/### auto-trash ###/q' dovecot.cont/data/sieve/$user.sieve
-	cat /tmp/emails.$user | sed 's/.*/"&",/' >>dovecot.cont/data/sieve/$user.sieve
-	echo '"x"]{ fileinto "Trash"; }' >>dovecot.cont/data/sieve/$user.sieve
+	grep -qs '### auto-trash ###' dovecot.cont/data/$user/in.sieve || continue
+	sed -i '/### auto-trash ###/q' dovecot.cont/data/$user/in.sieve
+	cat /tmp/emails.$user | sed 's/.*/"&",/' >>dovecot.cont/data/$user/in.sieve
+	echo '"x"]{ fileinto "Trash"; }' >>dovecot.cont/data/$user/in.sieve
 done
 
 rm /tmp/emails.txt

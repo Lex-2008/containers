@@ -36,8 +36,15 @@ Installation
 		Warning: truncating password to 8 characters
 		test@example.com:k3Nn97/2DWock
 
-* Add users' sieve scripts to `data/sieve` directory, naming them `$email.sieve`.
-For example, for user "test@example.com" create `data/sieve/test@example.com.sieve` file.
+* Create maildirs for them, like this:
+
+		mkdir -p data/test@example.com/Maildir
+
+* Add users' sieve scripts next to the above Maildir directory,
+naming them `in.sieve` for filtering incoming email
+and `out.sieve` for filtering outgoing email.
+
+	For example, for user "test@example.com" create `data/mail/test@example.com/in.sieve` file.
 
 	For users who like messages from strangers (people not in their address book) to be sorted directly to trash,
 	add this at the end of their sieve file:
@@ -48,9 +55,6 @@ For example, for user "test@example.com" create `data/sieve/test@example.com.sie
 	and run the `daily.sh` script in parent dir.
 
 	Note that `elsif` assumes there are other conditions above.
-
-* Sent-mail-sorting sieve script is currently global.
-Save it to `data/sieve/sent.sieve` file.
 
 Usage
 -----
