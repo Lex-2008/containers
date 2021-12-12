@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "HTTP/1.0 200 OK"
+echo "Content-Type: text/html"
 echo
 
 # ### useful env vars ###
@@ -12,8 +13,7 @@ echo
 
 q="$(echo $PATH_INFO | tr 'm/pdt' '- +/*')"
 qlen="${#q}"
-export BC_LINE_LENGTH="$qlen"
-qlen0="$(head -c 16 </dev/zero | tr '\0' '0')"
+qlen0="$(head -c "$qlen" </dev/zero | tr '\0' '0')"
 
 a="$(echo "$PATH_INFO" | cut -d/ -f2)"
 o="$(echo "$PATH_INFO" | cut -d/ -f3)" #operand letter, one of pmtd
@@ -47,19 +47,18 @@ test "$o" != "d" -a "$b" != "0" && prn "$a" "d" "$b"
 
 echo "</ul><p>Try other values of 1<sup>st</sup> operand:</p><ul>"
 
-for char_n in `seq "$al"`; do
-	# suggest replacing digit with 0 (max=10) only if:
-	# it's not 1st digit, or
-	# whole number is 1-digit long
-	# (it doesn't make sense to change 12 to 02,
-	# but it's ok to chane 1 to 0)
-	test "$char_n" != 1 -o "$al" = 1 && max=10 || max=9
-	sed_expr="$(for n in `seq 1 $max`; do echo "${n}s/./$n/$char_n"; done | sed 's_/10/_/0/_')"
-	numbers="$(for _ in `seq 10`; do echo "$a"; done | sed "$sed_expr;/$a/d" | sort )"
-	for number in $numbers; do
-		prn "$number" "$o" "$b"
-	done
-done
+# check if we need to delete 1st line which suggests to replace 1st digit with 0.
+# It makes sense only if whole number is 1-digit long
+# (it doesn't make sense to change 56 to 06, but it's ok to chane 5 to 0).
+# Worth noting that 1st line always suggests to replace 1st digit with 0.
+# Exception would be a number which starts with 0, but we don't have them here :)
+if test "$al" = 1; then
+	del10='';
+else
+	del10='1d;'
+fi
+
+nums "$a" | sed "${del10}s_.*_<li><a href='&$o$b.html'>&$(o2op "$o")$b</a></li>_"
 
 if ! test "$a" = "0"; then
 	test "$al" -gt 1 && prn "${a::-1}" "$o" "$b"
@@ -70,19 +69,17 @@ fi
 
 echo "</ul><p>Try other values of 2<sup>nd</sup> operand:</p><ul>"
 
-for char_n in `seq "$bl"`; do
-	# suggest replacing digit with 0 (max=10) only if:
-	# it's not 1st digit, or
-	# whole number is 1-digit long and it's not a division operation
-	# (in addition to $a, it doesn't make sense to change 1 to 0
-	# if it's a division operation)
-	test "$char_n" != 1 -o "$al" = 1 -a "$o" != "d" && max=10 || max=9
-	sed_expr="$(for n in `seq 1 $max`; do echo "${n}s/./$n/$char_n"; done | sed 's_/10/_/0/_')"
-	numbers="$(for _ in `seq 10`; do echo "$b"; done | sed "$sed_expr;/$b/d" | sort )"
-	for number in $numbers; do
-		prn "$a" "$o" "$number"
-	done
-done
+# check if we need to delete 1st line which suggests to replace 1st digit with 0.
+# It makes sense only if whole number is 1-digit long,
+# AND operation is not division
+# (NOTE that it's a difference with similar fragment above)
+if test "$bl" = 1 -a "$o" != "d"; then
+	del10='';
+else
+	del10='1d;'
+fi
+
+nums "$b" | sed "${del10}s_.*_<li><a href='$a$o&.html'>$a$(o2op "$o")&</a></li>_"
 
 if ! test "$b" = "0"; then
 	test "$bl" -gt 1 && prn "$a" "$o" "${b::-1}"
@@ -91,5 +88,4 @@ if ! test "$b" = "0"; then
 	test "$qlen" -ge 12 && prn "$a" "$o" "$b$qlen0"
 fi
 
-echo "</ul>"
-echo "</body></html>"
+echo "</ul></body></html>"
