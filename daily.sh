@@ -1,3 +1,5 @@
+cd /containers/
+
 docker exec bind rndc -p9533 sync -clean
 docker exec dovecot sh /data/expunge.sh
 
