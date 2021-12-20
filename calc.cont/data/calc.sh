@@ -62,9 +62,12 @@ nums "$a" | sed "${del10}s_.*_<li><a href='&$o$b.html'>&$(o2op "$o")$b</a></li>_
 
 if ! test "$a" = "0"; then
 	test "$al" -gt 1 && prn "${a::-1}" "$o" "$b"
-	prn "${a}0" "$o" "$b"
-	prn "${a}000000" "$o" "$b"
-	test "$qlen" -ge 12 && prn "$a$qlen0" "$o" "$b"
+	# the longest working URL is this:
+	# "http://calc.shpakovsky.ru/1p1$(head -c 4076 </dev/zero | tr '\0' '0').html"
+	# max allowed qlen is 4082, add extra slack to be sure
+	test "$qlen" -lt 4080 && prn "${a}0" "$o" "$b"
+	test "$qlen" -lt 4070 && prn "${a}000000" "$o" "$b"
+	test "$qlen" -lt 2040 -a "$qlen" -ge 12 && prn "$a$qlen0" "$o" "$b"
 fi
 
 echo "</ul><p>Try other values of 2<sup>nd</sup> operand:</p><ul>"
@@ -83,9 +86,9 @@ nums "$b" | sed "${del10}s_.*_<li><a href='$a$o&.html'>$a$(o2op "$o")&</a></li>_
 
 if ! test "$b" = "0"; then
 	test "$bl" -gt 1 && prn "$a" "$o" "${b::-1}"
-	prn "$a" "$o" "${b}0"
-	prn "$a" "$o" "${b}000000"
-	test "$qlen" -ge 12 && prn "$a" "$o" "$b$qlen0"
+	test "$qlen" -lt 4080 && prn "$a" "$o" "${b}0"
+	test "$qlen" -lt 4070 && prn "$a" "$o" "${b}000000"
+	test "$qlen" -lt 2040 -a "$qlen" -ge 12 && prn "$a" "$o" "$b$qlen0"
 fi
 
 echo "</ul></body></html>"
