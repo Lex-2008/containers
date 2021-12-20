@@ -71,7 +71,8 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 
 * Also, a special [logshow][] backend server gives you insights into nginx and postfix logs - for realtime updates of lists of [spamers][] and [hackers][].
 
-* An [opendkim-testmsg][] backend server provides a [DKIM signature online test][opendkim-testmsg-online].
+* An [opendkim-testmsg][] backend server provides a [DKIM signature online test][opendkim-testmsg-online],
+  and [calc][] backend server - [a search-friendly calculator][calc-fun] for those who needs it.
 
 * This picture was created with [PlantUML][p1].
 
@@ -94,7 +95,9 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [opendkim-testmsg-online]: https://opendkim-testmsg.shpakovsky.ru/
 [spamers]: http://alexey.shpakovsky.ru/en/spam-emails.html
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
-[p1]: http://www.plantuml.com/plantuml/uml/TL8zJyCm4DtzAqwTW3O3QrHLHOW1gGBKPYW21XERnge_Z7s1vj_Z96xS1bWSttlFxrxENdga3cibIIKO1wuiDi2uBvsmA8mcvENg3R9i0Nedz2672j7EkjNFNhLGD5HXxIglqCB5T5FSh8jYjRbCXz-5PZamxKbdqs6iqG7e7KbVG5OFOkrhooXoGZo63rZZyKCSpgjhcC-vPej5yZrIERHnfjlRrVtTGq4YsdUmb4bJxdl9Y8h6aOlAFxaOXUs5IXuow5ea1oKaSZUep1Sl3IPXq4Ki1ndiqXyal1tiz6dzk7sEDXrYdJaqPDZzFd8K-yzQECUbeaAIqoB470zgn0TwQ11DpmNXcgZOKndlBuK_bKKonfaOotKxcmovH-Lt4w0UZc34IBBwhuCqEr-Pxp4-TZflpdZLC1TsBBsPXFK36JsyHFVNVsAH0oqL9ylWKolv0m00
+[calc]: http://alexey.shpakovsky.ru/en/search-friendly-calculator.html
+[calc-fun]: http://calc.shpakovsky.ru/
+[p1]: http://www.plantuml.com/plantuml/uml/TPA_JlCm5CLtFyLLf--ZpS0QLLKHOa2g0BKPYe31nAQnwZ_6le7cxN4IDsvJM1pVSuv_lh6zz4WTragIIZ0EN5biW75VEc5H64t8ozKRPDa2z4xeGmuLefrrev-zQg5egCBOLLwXXN_JJN6pBehLvdzQ_2uqou5fJpfCfx561w4dahw0h1x2sjUMKUI4U0mViCRZXpYSLzSmdtFD5el4FLevjErCjxUh-xk7WaIrty5I9asvxoCZAuAZ5vE_Uh4LjXSgCMJ8jKeEIaZaRaYPBruQJC6GYreECk3I7oIzFTZfq_fn-nmndMATEJHac5qkEORzPosSur9H8Sbf4TeS7zJ83_QmGOIU1y8rKR6dCjvVQluq5itOpiHOhjkpoP1xL7ut0UhXA4QD9DHVEqYpyvNvlj1BAiknECQVTyHurJ0NPYmzfAH19YzVOxBxDt62o86MYfDbuDHA_W00
 
 
 Extra features
