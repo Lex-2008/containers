@@ -15,6 +15,7 @@ docker run -d -v $PWD/logshow.cont/data:/data -v $PWD/nginx.cont/data/logs:/ngin
 docker run -d -v $PWD/dyndns.cont/data:/data -v $PWD/bind.cont/data/key.conf:/key.conf --link bind:bind -p 127.0.0.1:8004:8000 --name=dyndns dyndns
 docker run -d -v $PWD/opendkim-testmsg.cont/data:/data -p 127.0.0.1:8005:8000 --name=opendkim-testmsg opendkim-testmsg
 docker run -d -v $PWD/calc.cont/data:/data -p 127.0.0.1:8006:8000 --name=calc calc
+docker run -d -v $PWD/dropbox.cont/data:/data -p 127.0.0.1:8007:8000 --name=dropbox dropbox
 
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx

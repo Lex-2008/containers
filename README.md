@@ -74,6 +74,8 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 * An [opendkim-testmsg][] backend server provides a [DKIM signature online test][opendkim-testmsg-online],
   and [calc][] backend server - [a search-friendly calculator][calc-fun] for those who needs it.
 
+* There is also a [dropbox][] container for those who want to drop me a file.
+
 * This picture was created with [PlantUML][p1].
 
 [nginx]: nginx.cont/README.md
@@ -97,7 +99,8 @@ While it doesn't give any performance benefits, it greatly decreases noise in Do
 [hackers]: http://alexey.shpakovsky.ru/en/login-attempts.html
 [calc]: http://alexey.shpakovsky.ru/en/search-friendly-calculator.html
 [calc-fun]: http://calc.shpakovsky.ru/
-[p1]: http://www.plantuml.com/plantuml/uml/TPA_JlCm5CLtFyLLf--ZpS0QLLKHOa2g0BKPYe31nAQnwZ_6le7cxN4IDsvJM1pVSuv_lh6zz4WTragIIZ0EN5biW75VEc5H64t8ozKRPDa2z4xeGmuLefrrev-zQg5egCBOLLwXXN_JJN6pBehLvdzQ_2uqou5fJpfCfx561w4dahw0h1x2sjUMKUI4U0mViCRZXpYSLzSmdtFD5el4FLevjErCjxUh-xk7WaIrty5I9asvxoCZAuAZ5vE_Uh4LjXSgCMJ8jKeEIaZaRaYPBruQJC6GYreECk3I7oIzFTZfq_fn-nmndMATEJHac5qkEORzPosSur9H8Sbf4TeS7zJ83_QmGOIU1y8rKR6dCjvVQluq5itOpiHOhjkpoP1xL7ut0UhXA4QD9DHVEqYpyvNvlj1BAiknECQVTyHurJ0NPYmzfAH19YzVOxBxDt62o86MYfDbuDHA_W00
+[dropbox]: dropbox.cont/README.md
+[p1]: http://www.plantuml.com/plantuml/uml/TP8_JyCm4CLtVufJ9w3Dm1fLLH5YGAe0jHcAWC6DJMFLVupjGFBjSH8tRX9OKj_lFR-xsbvRXuqh1KS58nIeqAu6Gcrkc7PCIOJURZuWILOWZqnMAHJEwKNxjOjtoGJsbV-sbHLEmzLybzrjisopkuwR3qoI58Yqg8rf6Qcb1rqYwWf8ojuiRQa9TXGXw_mFQ6NT9wk6rIqibrIIrIhcdgKKcd7c-_lDuyDJXWBjEcXCkCfFdMKaXU2W1UUVMXY5d9Y86Tpx6fA2ODnHqxlKDysLYqRl2om5xkFYFuYyETZvo_Pv_nfYMgADgchKhwPRpcRxLJ9ZA1UOSNHP-3771pNIlTmt2A53Wxycp4wOX_kBmr_QWXZ6cIbDPNCsYQFM2NkS0RPmXe6X6FLVXnppV0A9KVgWgWddwcWBzJFcuxR3IGajQcByYiG75XaaVFfAezozbOk8570kA5hxd5BmNm00
 
 
 Extra features
