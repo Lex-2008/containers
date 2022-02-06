@@ -1,0 +1,11 @@
+gemini://phreedom.club/git/f
+gemini://phreedom.club/gmisub/
+gemini://phreedom.club/good
+gemini://phreedom.club/bad.png
+gemini://other
+gemini://topotun.hldns.ru/fake.gmi
+gemini://topotun.hldns.ru/gemini.gmi
+gemini://topotun.hldns.ru/me.gmi
+gemini://topotun.hldns.ru/russian.gmi
+gemini://topotun.hldns.ru/shentro.gmi
+

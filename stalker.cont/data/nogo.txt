@@ -1,0 +1,12 @@
+# много страниц и мало интересного
+gemini://causa-arcana.com/assets/
+gemini://phreedom.club/circumlunar-transmissions/
+gemini://phreedom.club/git/
+# страницы, которые меняются каждый день или чаще
+# проверяйте их вручную, там всегда есть изменения
+gemini://phreedom.club/gmisub/
+gemini://stalker.shpakovsky.ru/today.gmi
+gemini://topotun.hldns.ru/cgi-bin/bad.cgi
+gemini://topotun.hldns.ru/cgi-bin/good.cgi
+gemini://topotun.hldns.ru/fakenews.txt
+gemini://topotun.hldns.ru/shentrocode.txt
