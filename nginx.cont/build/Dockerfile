@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache nginx nginx-mod-mail nginx-mod-http-set-misc
+RUN apk add --no-cache nginx nginx-mod-mail nginx-mod-http-set-misc nginx-mod-stream
 
 EXPOSE 25 80 443
 

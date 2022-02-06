@@ -17,6 +17,9 @@ docker run -d -v $PWD/opendkim-testmsg.cont/data:/data -p 127.0.0.1:8005:8000 --
 docker run -d -v $PWD/calc.cont/data:/data -p 127.0.0.1:8006:8000 --name=calc calc
 docker run -d -v $PWD/dropbox.cont/data:/data -p 127.0.0.1:8007:8000 --name=dropbox dropbox
 
+# gemini
+docker run -d -v $PWD/gemini.cont/data:/data -p 127.0.0.1:1966:1234 --user 1000:1000 --name=gemini alpine nc -lk -p 1234 -e /data/server.sh
+
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx
 
