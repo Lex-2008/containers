@@ -14,7 +14,7 @@ request="${request%$r}"
 # $request looks like this
 # gemini://localhost[:port][/path/to]
 
-echo "$(date +"%F %T") $remote_ip $request" >>/data/logs/gemini.log
+grep -Fxq "$remote_ip" /data/logs/nolog.txt || echo "$(date +"%F %T") $remote_ip $request" >>/data/logs/gemini.log
 
 # test and strip protocol
 if test "${request::9}" = "gemini://"; then
