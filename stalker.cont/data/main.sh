@@ -24,7 +24,12 @@ dosite_main() {
 	host="${base:9}"
 	host="${host%%/*}"
 	title="${base:9:-1}"
-	if ! robotstxt "$host"; then
+	robotstxt "$host"; # fetch new robots.txt
+	bad_robotstxt="$?" # 0 if good
+	if ! test -s "robotstxt/$host.new"; then
+		echo "$host" >>"$OUTDIR/skipped.txt"
+		return 1
+	elif ! test "$bad_robotstxt" = 0; then
 		echo '' >>"$OUTFILE"
 		echo "### $title" >>"$OUTFILE"
 		echo "> Сайт пропущен из-за изменений в файле robots.txt" >>"$OUTFILE"
@@ -51,17 +56,21 @@ dosite_robotstxt() {
 	base="$1"
 	host="${base:9}"
 	host="${host%%/*}"
-	if ! robotstxt "$host"; then # fetch new robots.txt
-		dirname="$(echo "${base:9:-1}" | sed 's_/_-_g')"
-		new="robotstxt/$host.new"
-		old="robotstxt/$host.old"
-		echo "robots.txt differ for $base:"
-		echo "=== old robots.txt ==="
-		cat "$old"
-		echo "=== new robots.txt ==="
-		cat "$new"
-		echo "=== please investagate"
-	fi
+	robotstxt "$host" && return 0 # fetch new robots.txt and exit if it matches
+	test -s "robotstxt/$host.new" || return 1 # exit if new robots.txt is empty (site offline)
+	# otherwise, show diff
+	new="robotstxt/$host.new"
+	old="robotstxt/$host.old"
+	echo "======================"
+	echo "robots.txt differ for: $base"
+	echo "=== old robots.txt ==="
+	cat "$old"
+	echo "=== new robots.txt ==="
+	cat "$new"
+	echo "===   difference   ==="
+	diff "$old" "$new"
+	echo "=== please investagate and fix:"
+	echo "mv $new $old"
 }
 
 dosite_diff() {
@@ -95,6 +104,7 @@ case "$1" in
 	( main )
 		mkdir -p "$OUTDIR"
 		mv "$OUTFILE" "$OUTFILE_BAK"
+		rm "$OUTDIR/skipped.txt"
 		alias dosite=dosite_main
 		;;
 	( diff )
@@ -160,7 +170,23 @@ case "$1" in
 				cat data/*/warning.txt
 			fi
 
-			cat "$OUTFILE"
+			if test -s "$OUTFILE"; then
+				cat "$OUTFILE"
+			else
+				echo ''
+				echo "Изменений не обнаружено."
+			fi
+
+			if test -s "$OUTDIR/skipped.txt"; then
+				cat "$OUTDIR/skipped.txt" | sort -u >"$OUTDIR/skipped.sorted"
+				echo ''
+				if test "$(cat "$OUTDIR/skipped.sorted" | wc -l)" = 1; then
+					echo "Нет связи с капуслой: $(cat "$OUTDIR/skipped.sorted")"
+				else
+					skipped="$(cat "$OUTDIR/skipped.sorted" | tr '\n' ' ')"
+					echo "Нет связи с капуслами: $skipped"
+				fi
+			fi
 			echo ''
 			w="## $(date -d '8 days ago' +%F)"
 			sed -n "/^##/,\${1,/^$w/{/$w/!p}}" "$INDEXFILE_REAL" 
