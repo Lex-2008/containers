@@ -1,4 +1,5 @@
 #!/bin/sh
 
 cd "${0%/*}"
-docker run --rm -v $PWD/data:/data -v /containers/gemini.cont/data/hosts/stalker.shpakovsky.ru:/ext stalker /data/main.sh main
+OUTDIR="/containers/gemini.cont/data/hosts/stalker.shpakovsky.ru"
+docker run --rm -v $PWD/data:/data -v $OUTDIR:/ext stalker /data/main.sh main >"$OUTDIR/log.txt" 2>&1
