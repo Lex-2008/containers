@@ -1,8 +1,8 @@
 #!/bin/false # this file should be sourced, not run
 
 # config
-DATA=/data/donations/$host.txt # ip * date country gems gemline
-			# 127.0.0.1 * 2022-02-05 RU 2 GemGem
+DATA=/data/donations/$host.txt # ip gems * date gemline ["from" country]
+			# 127.0.0.1 2 * 2022-02-05 GemGem from RU
 OUT=/data/hosts/$host/donations.gmi
 OUT_URL="/donations.gmi"
 DONATE_URL="/donate"
@@ -24,20 +24,31 @@ fi
 
 ### save
 
-last_time="$(awk "/^$remote_ip /{ print \$5 }" "$DATA")"
+last_time="$(awk "/^$remote_ip /{ print \$2 }" "$DATA")"
 test "$last_time" -gt "$they_give" && they_give="$last_time"
 
 gemline="$(yes "$gem" | head -n "$they_give" | tr -d '\n')"
 
+if ! test -z "$remote_ip"; then
+	co="$(whois "$remote_ip" | awk '/[Cc]ountry/{print $2; exit}')"
+	if test "co" != 'XX'; then
+		if test "${#co}" = 2; then
+			from="from $(echo "$from" | tr 'a-z' 'A-Z' | ./co2flag.sh)"
+		else
+			from="from $co"
+		fi
+	fi
+fi
+
 sed -i "/$remote_ip /d" "$DATA"
-echo "$remote_ip * $(date +'%F') XX $they_give $gemline" >>"$DATA"
+echo "$remote_ip $they_give * $(date +'%F') $gemline $from" >>"$DATA"
 
 
 
 ### render
 
 ips="$(cat "$DATA" | wc -l)"
-gems="$(awk '{ sum += $5 } END { print sum }' "$DATA")"
+gems="$(awk '{ sum += $2 } END { print sum }' "$DATA")"
 # https://stackoverflow.com/questions/2702564/how-can-i-quickly-sum-all-numbers-in-a-file
 
 # sed: wait for 1st empty line; skip over non-empty lines; print rest
@@ -47,7 +58,7 @@ sed -n '/^$/{:a;n;/^$/!ba;:b;n;p;bb;}' "$OUT" >/tmp/outtail
 	echo "# $gem DONATIONS $gem"
 	echo "Total received: $gem$gems from $ips donors:"
 	echo ''
-	cut -d' ' -f '2-3,6' "$DATA"
+	cut -d' ' -f '3-' "$DATA"
 	echo ''
 	cat /tmp/outtail
 } >"$OUT"
