@@ -20,7 +20,11 @@ tab="$(echo -e '\t')"
 
 get() {
 	# pass URL and file where to save to
-	echo "$1" | timeout 7 openssl s_client -crlf -connect $HOST:1965 -quiet 2>/dev/null | sed '1{/20 text/!q}' >"$2"
+	echo "$1" | timeout 10 openssl s_client -crlf -connect $HOST:1965 -quiet 2>/dev/null | sed '1{/20 text/!q}' >"$2"
+	if ! test -s "$2"; then
+		sleep 10
+		echo "$1" | timeout 10 openssl s_client -crlf -connect $HOST:1965 -quiet 2>/dev/null | sed '1{/20 text/!q}' >"$2"
+	fi
 }
 
 extract_urls() {
