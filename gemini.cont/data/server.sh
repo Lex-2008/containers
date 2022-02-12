@@ -110,6 +110,8 @@ test "${request::35}" = "gemini://alexey.shpakovsky.ru/vote/" && . /data/vote.sh
 
 # we compare with "request", since it has protocol, but pass urlpath since it's shorter
 test "${request::36}" = "gemini://alexey.shpakovsky.ru/donate" && . /data/donate.sh "${urlpath:8}"
+test "${request}" = "gemini://alexey.shpakovsky.ru/flagme" && . /data/flag.sh en
+test "${request}" = "gemini://alexey.shpakovsky.ru/flagru" && . /data/flag.sh ru
 
 test "${request::32}" = "gemini://alexey.shpakovsky.ru/ru" && lang="; lang=ru"
 test "$host" = "stalker.shpakovsky.ru" && lang="; lang=ru"
