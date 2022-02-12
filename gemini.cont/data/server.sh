@@ -92,8 +92,10 @@ urlpath="$(echo -e "${urlpath//%/\\x}")"
 # or ;param;params for titan uploads
 
 hostroot="/data/hosts/$host/"
-# assume no dir/file-names have ; in them - titan requirement
-filepath="$(realpath "$hostroot${urlpath%%;*}")"
+# strip everything after ; or ?
+# titan uses ; for adding params,
+# and some servers use arbitrary queries after ?
+filepath="$(realpath "$hostroot${urlpath%%[;\?]*}")"
 
 
 
