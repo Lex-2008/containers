@@ -113,6 +113,7 @@ test "${request::36}" = "gemini://alexey.shpakovsky.ru/donate" && . /data/donate
 test "${request::35}" = "gemini://alexey.shpakovsky.ru/maze/" && filepath='/data/hosts/alexey.shpakovsky.ru/maze.gmi'
 test "${request}" = "gemini://alexey.shpakovsky.ru/flagme" && . /data/flag.sh en
 test "${request}" = "gemini://alexey.shpakovsky.ru/flagru" && . /data/flag.sh ru
+test "${host::2}" = "ip" && . /data/ip.sh "$urlpath"
 
 test "${request::32}" = "gemini://alexey.shpakovsky.ru/ru" && lang="; lang=ru"
 test "$host" = "stalker.shpakovsky.ru" && lang="; lang=ru"
