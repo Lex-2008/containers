@@ -2,11 +2,16 @@
 gemini://causa-arcana.com/assets/
 gemini://phreedom.club/circumlunar-transmissions/
 gemini://phreedom.club/git/
+gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
 gemini://phreedom.club/gmisub/
-gemini://stalker.shpakovsky.ru/today.gmi
 gemini://topotun.hldns.ru/cgi-bin/bad.cgi
 gemini://topotun.hldns.ru/cgi-bin/good.cgi
 gemini://topotun.hldns.ru/fakenews.txt
 gemini://topotun.hldns.ru/shentrocode.txt
+# по мнению редакции, эти страницы никому не интересны
+gemini://alexey.shpakovsky.ru/rulog/flags.gmi
+gemini://stalker.shpakovsky.ru/log.txt
+gemini://stalker.shpakovsky.ru/nogo.txt
+gemini://stalker.shpakovsky.ru/today.gmi
