@@ -7,10 +7,14 @@ robotstxt() {
 	host="$1"
 	new="robotstxt/$host.new"
 	old="robotstxt/$host.old"
-	url="gemini://$host/robots.txt"
+	url="gemini://$host/robots.txt?robot=true&uri=gemini://stalker.shpakovsky.ru/about.gmi"
 	# TODO: skip if $new is rather new
 	echo "$url" | timeout 10 openssl s_client -crlf -connect $host:1965 -quiet 2>/dev/null >"$new"
-	diff -q "$old" "$new"
+	if ! test -s "$new"; then
+		sleep 10
+		echo "$url" | timeout 10 openssl s_client -crlf -connect $host:1965 -quiet 2>/dev/null >"$new"
+	fi
+	diff -q "$old" "$new" >/dev/null
 }
 
 dosite_main() {
