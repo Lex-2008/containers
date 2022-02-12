@@ -106,9 +106,8 @@ filepath="$(realpath "$hostroot${urlpath%%[;\?]*}")"
 
 # we compare with "request", since it has protocol,
 # but pass urlpath since it's shorter and %-decoded
-test "${request::35}" = "gemini://alexey.shpakovsky.ru/vote/" && . /data/vote.sh "${urlpath:6}"
-
-# we compare with "request", since it has protocol, but pass urlpath since it's shorter
+test "${request::35}" = "gemini://alexey.shpakovsky.ru/vote/" && . /data/vote2.sh "${urlpath:6}"
+test "${request::36}" = "gemini://alexey.shpakovsky.ru/vote2/" && . /data/vote2.sh "${urlpath:7}"
 test "${request::36}" = "gemini://alexey.shpakovsky.ru/donate" && . /data/donate.sh "${urlpath:8}"
 test "${request::35}" = "gemini://alexey.shpakovsky.ru/maze/" && filepath='/data/hosts/alexey.shpakovsky.ru/maze.gmi'
 test "${request}" = "gemini://alexey.shpakovsky.ru/flagme" && . /data/flag.sh en
@@ -161,7 +160,10 @@ if test "$protocol" = 'gemini'; then
 	# serve static file
 	test -z "$mime" && mime="$(mime "$filepath")"
 	echo -en "20 $mime$lang\r\n"
-	cat "$filepath"
+	if test "${filepath: -4}" = '.gmi'; then
+		cat "$filepath" | . ./csrf.sh
+	else
+		cat "$filepath"
 	fi
 elif test "$protocol" = 'titan'; then
 	# upload via titan
