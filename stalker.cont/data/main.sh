@@ -118,6 +118,7 @@ case "$1" in
 esac
 
 dosite gemini://alexey.shpakovsky.ru/rulog/
+dosite gemini://armitage.flounder.online/ index.gmi
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://cats-shadow.cats-home.net/
 dosite gemini://causa-arcana.com/
@@ -137,6 +138,7 @@ dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
 dosite gemini://pr1ba.ru/
 dosite gemini://sdf.org/xyz/
+dosite gemini://simonvolpert.com/
 dosite gemini://spline-online.tk/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
 dosite gemini://sysrq.in/ru/
