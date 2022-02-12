@@ -54,6 +54,16 @@ function ask() {
 	exit 0
 }
 
+function err() {
+	echo -e "50 $1\r\n"
+	exit 1
+}
+
+function area51() {
+	echo -e "51 $1\r\n"
+	exit 1
+}
+
 function mime() {
 	# given a filename, print its mime type.
 	# for some inspiration, see
@@ -107,34 +117,18 @@ test "$host" = "stalker.shpakovsky.ru" && lang="; lang=ru"
 # serve static files from $filepath
 
 # Check for empty filepath - it happens when filepath goes into a non-existing dir
-if test -z "$filepath"; then
-	echo -en "20 text/plain\r\n"
-	echo "51 NOT FOUND"
-	echo "path: [$urlpath]"
-	echo "root: [$hostroot]"
-	exit 1
-fi
+test -z "$filepath" && area51 "empty filepath: [$host][$urlpath] => [$hostroot]"
 
 # Disable path traversal. Note that dynamics above must do it themselves:
 # a) they might want it (comments in guestbook?)
 # b) realpath doesn't work for non-existing dirs
 # Also note that for dirs, realpath returns them without trailing /,
 # so root path must be checked separately
-if test "$filepath/" != "$hostroot" -a "${filepath::${#hostroot}}" != "$hostroot"; then
-	echo -en "20 text/gemini\r\n"
-	echo "# Sorry!"
-	echo "Path traversal is disabled on this server. Have a look at source code for this server, instead:"
-	echo '```'
-	cat "$0"
-	echo '```'
-	exit 1
-fi
+test "$filepath/" != "$hostroot" -a "${filepath::${#hostroot}}" != "$hostroot" && area51 "path traversal: [$filepath] not it [$hostroot]"
 
 index_file="index.gmi"
 
 # # Strip $index_file from $urlpath via redirect.
-# # Note that at this point, the file is guaranteed to exist
-# # (otherwise, execution would stop earlier)
 # test "${urlpath: -10}" = "/$index_file" && local_perm_redir "${urlpath::-9}"
 
 # serve directory
@@ -152,32 +146,24 @@ if test -d "$filepath"; then
 		filepath="$filepath/$index_file"
 	else
 		# TODO: generate directory listing
-		false
+		err "no $index_file in [$filepath]"
 	fi
 fi
 
 if test "$protocol" = 'gemini'; then
-	if test -f "$filepath"; then
-		# serve static file
-		test -z "$mime" && mime="$(mime "$filepath")"
-		echo -en "20 $mime$lang\r\n"
-		cat "$filepath"
-		exit 0
-	else
-		echo -en "20 text/plain\r\n"
-		echo "51 NOT FOUND"
-		echo "host: [$host]"
-		echo "path: [$urlpath]"
-		echo "file: [$filepath]"
-		exit 1
+	test -f "$filepath" || area51 "no file: [$filepath]"
+	# serve static file
+	test -z "$mime" && mime="$(mime "$filepath")"
+	echo -en "20 $mime$lang\r\n"
+	cat "$filepath"
 	fi
 elif test "$protocol" = 'titan'; then
 	# upload via titan
 	perms_file="/data/titan/$host.txt"
-	test -f "$perms_file" || exit 1
+	test -f "$perms_file" || err "host [$host] does not support titan uploads"
 	# sed hint: if s/// failed, returned value is empty (`d`)
 	size="$(echo "$urlpath" | sed -r 's/.*;size=([^;]*)(;.*|$)/\1/;t;d')"
-	test -z "$size" && exit 1
+	test -z "$size" && err "no size provided in [$urlpath]"
 	token="$(echo "$urlpath" | sed -r 's/.*;token=([^;]*)(;.*|$)/\1/;t;d' | md5sum | sed 's/\s.*//')"
 	token_ok=''
 	while read -r perm_line; do
@@ -187,15 +173,8 @@ elif test "$protocol" = 'titan'; then
 			break
 		fi
 	done <"$perms_file"
-	if test -z "$token_ok"; then
-		echo -en "50 Bad token: [$token]\r\n"
-		exit 1
-	fi
+	test -z "$token_ok" && err "bad token: [$token]"
 	# Note: we can't use cat here, it hangs
 	head -c "$size" >"$filepath"
 	echo -e "30 gemini://$host${urlpath%%;*}\r\n"
-	exit 0
 fi
-
-# should not reach
-echo -en "50 End of script reached\r\n"
