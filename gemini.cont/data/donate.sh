@@ -33,7 +33,7 @@ if ! test -z "$remote_ip"; then
 	co="$(whois "$remote_ip" | awk '/[Cc]ountry/{print $2; exit}')"
 	if test "co" != 'XX'; then
 		if test "${#co}" = 2; then
-			from="from $(echo "$from" | tr 'a-z' 'A-Z' | ./co2flag.sh)"
+			from="from $(echo "$co" | tr 'a-z' 'A-Z' | ./co2flag.sh)"
 		else
 			from="from $co"
 		fi
