@@ -3,6 +3,8 @@ cd /containers/
 docker exec bind rndc -p9533 sync -clean
 docker exec dovecot sh /data/expunge.sh
 
+mv gemini.cont/data/votes/tokens.txt gemini.cont/data/votes/yestertokens.txt
+
 rm -f /tmp/emails.*
 
 for user in `ls dovecot.cont/data/mail/`; do

@@ -9,6 +9,7 @@ EOL
 echo "$filename$option$token" | grep -q '[^a-z0-9]' && exit 1
 NOVOTES=/data/votes/novote.txt
 TOKENS="/data/votes/tokens.txt" 
+YESTERTOKENS="/data/votes/yestertokens.txt"
 DATA="/data/votes/$filename"
 
 # $DATA.options - possible options, 1 entry per line
@@ -25,17 +26,25 @@ grep -Fxq "$remote_ip" "$NOVOTES" && err "your IP blacklisted for voting"
 test -z "$option" && local_perm_redir "$OUT_URL"
 test -z "$token" && local_perm_redir "$OUT_URL"
 grep -Fxq "$option" "$DATA.options" || local_perm_redir "$OUT_URL"
-grep -q " $token$" "$TOKENS" || local_perm_redir "$OUT_URL"
+
+vote_ip="$(awk "/ $token$/{ print \$1 }" "$TOKENS" "$YESTERTOKENS")"
+
+if test -z "$vote_ip"; then
+	printf "20 text/gemini\r\n"
+	echo "Please read the article before voting."
+	echo "=> $OUT_URL?$(date +%s) Go to article"
+	exit 0
+fi
 
 ### save
 
-sed -i "/$token /d" "$DATA.vote2"
-echo "$token $(date +'%F_%T') $option" >>"$DATA.vote2"
+sed -i "/$vote_ip /d" "$DATA.votes"
+echo "$vote_ip $(date +'%F_%T') $option" >>"$DATA.votes"
 
 ### patch/render
 
 while read -r option; do
-	votes="$(grep -c " $option$" "$DATA.vote2")"
+	votes="$(grep -c " $option$" "$DATA.votes")"
 	test "$votes" = 1 && pl='' || pl='s'
 	echo "/^=> .vote.$filename.$option\\s/{s/([0-9]* votes\?)/($votes vote$pl)/;t;s/$/ ($votes vote$pl)/;}"
 done <"$DATA.options" >/tmp/sed
