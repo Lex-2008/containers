@@ -15,7 +15,7 @@ case "$req" in
 		printf "20 text/gemini\r\n"
 		echo '# WHOIS'
 		echo ''
-		echo "Whois data for your IP: $remote_ip$user_flag"
+		echo "Whois data for your IP: $remote_ip:$user_flag"
 		echo ''
 		echo '```'
 		cat "$filename"
