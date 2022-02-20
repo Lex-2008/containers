@@ -106,8 +106,8 @@ filepath="$(realpath "$hostroot${urlpath%%[;\?]*}")"
 
 # we compare with "request", since it has protocol,
 # but pass urlpath since it's shorter and %-decoded
-test "${request::35}" = "gemini://alexey.shpakovsky.ru/vote/" && . /data/vote2.sh "${urlpath:6}"
-test "${request::36}" = "gemini://alexey.shpakovsky.ru/vote2/" && . /data/vote2.sh "${urlpath:7}"
+test "${request::35}" = "gemini://alexey.shpakovsky.ru/vote/" && . /data/vote2.sh en "${urlpath:6}"
+test "${request::37}" = "gemini://alexey.shpakovsky.ru/voteru/" && . /data/vote2.sh ru "${urlpath:8}"
 test "${request::36}" = "gemini://alexey.shpakovsky.ru/donate" && . /data/donate.sh "${urlpath:8}"
 test "${request::35}" = "gemini://alexey.shpakovsky.ru/maze/" && filepath='/data/hosts/alexey.shpakovsky.ru/maze.gmi'
 test "${request}" = "gemini://alexey.shpakovsky.ru/flagme" && . /data/flag.sh en

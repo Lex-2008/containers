@@ -7,17 +7,18 @@
 TOKENS="/data/votes/tokens.txt" # ip token
 NOVOTES=/data/votes/novote.txt
 
-# if you can't vote then I don't need to process links
+# if you can't vote or are stalker then I don't need to process links
 grep -Fxq "$remote_ip" "$NOVOTES" && cat
+[[ "$remote_ip" =~ ^172\\.17\\. ]] && cat
 
 # CSRF-protect vote links
 while read -r line; do
-	if ! echo "$line" | grep -q '^=> /vote/'; then
+	if ! echo "$line" | grep -Eq '^=> /vote(ru)?/'; then
 		echo "$line";
 		continue;
 	fi
-	#                => /vote/filename[?/]option[ \t]title
-	IFS=$' /?\t' read arrow vote filename option title<<-EOL
+	#                 => /vote(ru)?/filename[?/]option[ \t]title
+	IFS=$' /?\t' read arrow vote    filename    option     title<<-EOL
 	$line
 	EOL
 	test -s "/data/votes/$filename.options" || collect_options=1
@@ -31,5 +32,5 @@ while read -r line; do
 		token="$(hexdump -e '"%02x"' -n 8 /dev/urandom)"
 		echo "$remote_ip $token" >>"$TOKENS"
 	fi
-	echo "=> /vote/$filename/$option/$token $title"
+	echo "=> /$vote/$filename/$option/$token $title"
 done
