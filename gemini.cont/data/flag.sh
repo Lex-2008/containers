@@ -1,7 +1,7 @@
 #!/bin/false # this file should be sourced, not run
 
 # config
-DATA=/data/flags/$host.txt # ip datetime countryname countryflag
+DATA=/data/data/flags.txt # ip datetime countryname countryflag
 OUT1=/data/hosts/$host/flags.gmi
 OUT2=/data/hosts/$host/rulog/flags.gmi
 test -f "$DATA" || exit 1

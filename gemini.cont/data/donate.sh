@@ -1,7 +1,7 @@
 #!/bin/false # this file should be sourced, not run
 
 # config
-DATA=/data/donations/$host.txt # ip gems * date gemline ["from" country]
+DATA=/data/data/donations.txt # ip gems * date gemline ["from" country]
 			# 127.0.0.1 2 * 2022-02-05 GemGem from RU
 OUT=/data/hosts/$host/donations.gmi
 OUT_URL="/donations.gmi"
