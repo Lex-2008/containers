@@ -136,7 +136,7 @@ dosite gemini://levochki.sysrq.in/
 dosite gemini://omega9.flounder.online/
 dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
-dosite gemini://pr1ba.ru/
+dosite gemini://pr1ba.ru/ index_ru.gmi
 dosite gemini://sdf.org/xyz/
 dosite gemini://simonvolpert.com/
 dosite gemini://spline-online.tk/
