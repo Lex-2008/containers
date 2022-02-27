@@ -200,7 +200,7 @@ case "$1" in
 
 		# delete old diffs
 		# +6 should be enough
-		find "$OUTDIR" -name 'diff-*' -mtime +8 -delete
+		find "$OUTDIR" -name 'diff-*' -mtime +7 -delete
 
 		cp ./nogo.txt "$OUTDIR/nogo.txt"
 		;;
