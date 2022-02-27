@@ -27,7 +27,7 @@ dosite_main() {
 	robotstxt "$host"; # fetch new robots.txt
 	bad_robotstxt="$?" # 0 if good
 	if ! test -s "robotstxt/$host.new"; then
-		echo "$host" >>"$OUTDIR/skipped.txt"
+		echo "$host" >>"$tmp-skipped.txt"
 		return 1
 	elif ! test "$bad_robotstxt" = 0; then
 		echo '' >>"$OUTFILE"
@@ -104,7 +104,7 @@ case "$1" in
 	( main )
 		mkdir -p "$OUTDIR"
 		mv "$OUTFILE" "$OUTFILE_BAK"
-		rm "$OUTDIR/skipped.txt"
+		rm -f "$tmp-skipped.txt"
 		alias dosite=dosite_main
 		;;
 	( diff )
@@ -179,13 +179,13 @@ case "$1" in
 				echo "Изменений не обнаружено."
 			fi
 
-			if test -s "$OUTDIR/skipped.txt"; then
-				cat "$OUTDIR/skipped.txt" | sort -u >"$OUTDIR/skipped.sorted"
+			if test -s "$tmp-skipped.txt"; then
+				cat "$tmp-skipped.txt" | sort -u >"$tmp-skipped.sorted"
 				echo ''
-				if test "$(cat "$OUTDIR/skipped.sorted" | wc -l)" = 1; then
-					echo "Нет связи с капуслой: $(cat "$OUTDIR/skipped.sorted")"
+				if test "$(cat "$tmp-skipped.sorted" | wc -l)" = 1; then
+					echo "Нет связи с капуслой: $(cat "$tmp-skipped.sorted")"
 				else
-					skipped="$(cat "$OUTDIR/skipped.sorted" | tr '\n' ' ')"
+					skipped="$(cat "$tmp-skipped.sorted" | tr '\n' ' ')"
 					echo "Нет связи с капуслами: $skipped"
 				fi
 			fi
