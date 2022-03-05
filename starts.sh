@@ -19,6 +19,7 @@ docker run -d -v $PWD/dropbox.cont/data:/data -p 127.0.0.1:8007:8000 --name=drop
 
 # gemini
 docker run -d -v $PWD/gemini.cont/data:/data -p 127.0.0.1:1966:1234 --name=gemini gemini nc -lk -p 1234 -e /data/server.sh
+docker run -d -v $PWD/ggstproxy.cont/data:/data -p 127.0.0.1:8008:8000 --link gemini:gemini --name=ggstproxy ggstproxy
 
 # frontend
 docker run -d -v $PWD/nginx.cont/data:/data --net=host --name=nginx nginx
