@@ -18,8 +18,11 @@ while read -r line; do
 		continue;
 	fi
 	#                 => /vote(ru)?/filename[?/]option[ \t]title
-	IFS=$' /?\t' read arrow vote    filename    option     title<<-EOL
+	IFS=$' \t' read arrow url title <<-EOL
 	$line
+	EOL
+	IFS='/?' read etc1 vote filename option etc2 <<-EOL
+	$url
 	EOL
 	test -s "/data/votes/$filename.options" || collect_options=1
 	test -z "$collect_options" || echo "$option" >>"/data/votes/$filename.options"
