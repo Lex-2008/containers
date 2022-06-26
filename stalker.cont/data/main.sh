@@ -119,18 +119,18 @@ esac
 
 dosite gemini://alexey.shpakovsky.ru/rulog/
 dosite gemini://armitage.flounder.online/ index.gmi
+# dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://cats-shadow.cats-home.net/
 dosite gemini://causa-arcana.com/
 dosite gemini://droom.vision/
-dosite gemini://gemini.maxxk.me/
 dosite gemini://gemini.quietplace.xyz/
 dosite gemini://gemlog.blue/users/abrbus/
 dosite gemini://gemlog.blue/users/musu_pilseta/
 dosite gemini://gemlog.blue/users/spelltoad/
-dosite gemini://h.17service.ru/
 dosite gemini://hugeping.ru/
 dosite gemini://karabas.flounder.online/
+dosite gemini://kirill.zholnay.name/
 dosite gemini://lesarbr.es/
 dosite gemini://levochki.sysrq.in/
 dosite gemini://omega9.flounder.online/
@@ -139,14 +139,13 @@ dosite gemini://phreedom.club/ '' index.gmi
 dosite gemini://pr1ba.ru/ index_ru.gmi
 dosite gemini://sdf.org/xyz/
 dosite gemini://simonvolpert.com/
-dosite gemini://spline-online.tk/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
 dosite gemini://sysrq.in/ru/
 dosite gemini://textgamesinfo.ru/
 dosite gemini://tilde.team/~kull/
 dosite gemini://tilde.team/~rami/ index.gmi
 dosite gemini://tilde.team/~runation/ index.gmi
-dosite gemini://topotun.hldns.ru/ index.gmi
+dosite gemini://topotun.dynu.com/ index.gmi
 dosite gemini://ychbn.flounder.online/ index.gmi
 
 # c https://stackoverflow.com/a/15515152
