@@ -1,2 +1,2 @@
 cd "${0%/*}"
-chown -R 33:33 data/squirrelmail
+chown -R 1000:1000 data/squirrelmail
