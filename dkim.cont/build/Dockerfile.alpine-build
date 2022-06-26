@@ -1,0 +1,23 @@
+FROM alpine:latest
+MAINTAINER https://github.com/Lex-2008
+
+RUN apk add alpine-sdk sudo && \
+    abuild-keygen -ain
+
+RUN mkdir git && cd git && \
+    wget https://git.alpinelinux.org/aports/plain/community/opendkim/APKBUILD && \
+    wget https://git.alpinelinux.org/aports/plain/community/opendkim/opendkim.pre-install && \
+    wget https://sourceforge.net/p/opendkim/patches/43/attachment/lua_odkim_sign_fix.patch
+
+RUN cd git && ls && \
+    sed -i '/confd/d;/initd/d;/source=/a lua_odkim_sign_fix.patch"' APKBUILD && \
+    cat APKBUILD && \
+    abuild -F checksum && \
+    abuild -Fr
+
+RUN apk add /root/packages/x86_64/opendkim-2.11.0-r0.apk && \
+    echo '*.* /data/logs/mail.log' >/etc/syslog.conf
+
+EXPOSE 2301
+#USER 1000:1000
+CMD syslogd && exec opendkim -x /data/conf/opendkim.conf

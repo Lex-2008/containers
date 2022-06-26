@@ -1,0 +1,38 @@
+FROM debian:bullseye-slim
+MAINTAINER https://github.com/Lex-2008
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends  \
+    build-essential git devscripts equivs
+
+RUN GIT_SSL_NO_VERIFY=1 git clone https://salsa.debian.org/debian/opendkim.git
+
+RUN cd opendkim && \
+    mk-build-deps -i --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes'
+
+RUN apt-get install -y --no-install-recommends  \
+    wget
+
+RUN cd opendkim/debian/patches && \
+    wget --no-check-certificate https://sourceforge.net/p/opendkim/patches/43/attachment/lua_odkim_sign_fix.patch && \
+    echo lua_odkim_sign_fix.patch >>series
+
+RUN cd opendkim && \
+    debuild -i -uc -us -b && \
+    cd ..
+
+RUN apt-get install -y opendkim liblua5.3-0 && \
+    rm *dbgsym*.deb *dev*.deb && \
+    dpkg -i *.deb
+
+RUN rm -rf *.deb opendkim && \
+    apt-get purge -y --auto-remove .*-build-dep \
+    build-essential git devscripts equivs && \
+    apt-get install -y inetutils-syslogd --no-install-recommends && \
+    apt-get clean && \
+    echo '*.* /data/logs/mail.log' >/etc/syslog.conf
+
+
+EXPOSE 2301
+#USER 1000:1000
+CMD syslogd && exec opendkim -x /data/conf/opendkim.conf
