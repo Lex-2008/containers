@@ -1,0 +1,110 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<style>
+
+.bar {display:flex}
+.bar .view>div {-moz-columns: 2; columns: 2}
+.bar .view label {display: block}
+.bar .nav {flex-grow:1}
+.bar .nav input {width:100%; margin: 0px}
+
+html {height:100%}
+.main {
+	display:flex;
+	flex-flow: column wrap;
+	align-items: flex-start;
+	align-content: flex-start;
+	overflow-x: auto;
+}
+
+#path a {color:blue}
+
+.main a {color:black}
+.main a[href$="/"] {color:blue}
+.main a {margin-right:16px}
+
+.main a::before {
+	content: " ";
+	display: inline-block;
+	width:18px;
+	height:16px;
+	vertical-align: bottom;
+	background-repeat:no-repeat;
+	}
+/* https://icons8.com/web-app/category/all/Very-Basic
+ * https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
+ */
+.main a.dir::before {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' enable-background='new 0 0 24 24' width='16' height='16'%3E %3Cpath d='M 0 1 L 0 6 L 0 22 L 24 22 L 24 6 L 24 4 L 9 4 L 7.21875 1 L 0 1 z M 2 6 L 7.875 6 L 22 6 L 22 20 L 2 20 L 2 6 z'/%3E %3C/svg%3E");
+}
+.main a.file::before {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' enable-background='new 0 0 24 24' width='16' height='16'%3E %3Cpath d='M 3 0 L 3 24 L 21 24 L 21 8 L 21 7 L 14 0 L 13 0 L 3 0 z M 5 2 L 13 2 L 13 8 L 19 8 L 19 22 L 5 22 L 5 2 z'/%3E %3C/svg%3E");
+}
+
+.shade {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	background: rgba(0,0,0,0.5);
+}
+.dialog {
+	max-width: 80%;
+	background: white;
+	max-height: 100%;
+	overflow: auto;
+}
+.dialog h2 {text-align:center}
+.dialog button {width:100%}
+
+</style></head><body>
+<div class="bar">
+	<fieldset class="backups"><legend>Архив</legend>
+		<select></select>
+	</fieldset>
+	<fieldset class="actions"><legend>При выборе файла</legend>
+		<label>
+			<input type="radio" name="file_action" checked id="file_dl">
+			Скачать его
+		</label>
+		<br>
+		<label>
+			<input type="radio" name="file_action" id="file_show">
+			Показать все его версии
+		</label>
+	</fieldset>
+	<fieldset class="actions"><legend>Действия</legend>
+		<button id="tar-btn">Скачать всю папку</button>
+		<a id="tar-lnk">Скачать всю папку</a>
+	</fieldset>
+	<fieldset class="nav"><legend>Шкала времени</legend>
+		<input type="range" id="q" list="marks">
+	</fieldset>
+</div>
+<fieldset class="">
+	<legend>
+		Содержимое папки
+		<span id="path"></span>
+		во время
+		<span id="time"></span>
+	</legend>
+	<div class="main" id="here"></div>
+</fieldset>
+<div class="file shade" id="file_group" style="display:none">
+	<div class="dialog">
+		<h2>Все версии файла</h2>
+		<table border="1">
+			<thead><tr><th>Имя</th><th>Дата создания</th><th>Дата удаления</th><th>Важность</th></tr></thead>
+			<tbody id="file_list"></tbody>
+		</table>
+		<button id="file_close">Закрыть</button>
+	</div>
+</div>
+<datalist id="marks" style="display:none">
+</datalist>
+<script src="script.js"></script>
+</body></html>

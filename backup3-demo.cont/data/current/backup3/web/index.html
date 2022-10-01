@@ -1,0 +1,162 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<style>
+
+.bar {display:flex}
+.bar .view>div {-moz-columns: 2; columns: 2}
+.bar .view label {display: block}
+.bar .nav {flex-grow:1}
+.bar .nav #q {width:100%; margin: 0px}
+
+html {height:100%}
+.main {
+	display:flex;
+	flex-flow: column wrap;
+	align-items: flex-start;
+	align-content: flex-start;
+	overflow-x: auto;
+}
+
+#path a {color:blue}
+
+.main a {color:black}
+.main a[href$="/"] {color:blue}
+.main a {margin-right:16px}
+
+.main a::before {
+	content: " ";
+	display: inline-block;
+	width:18px;
+	height:16px;
+	vertical-align: bottom;
+	background-repeat:no-repeat;
+	}
+/* https://icons8.com/web-app/category/all/Very-Basic
+ * https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
+ */
+.main a.dir::before {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' enable-background='new 0 0 24 24' width='16' height='16'%3E %3Cpath d='M 0 1 L 0 6 L 0 22 L 24 22 L 24 6 L 24 4 L 9 4 L 7.21875 1 L 0 1 z M 2 6 L 7.875 6 L 22 6 L 22 20 L 2 20 L 2 6 z'/%3E %3C/svg%3E");
+}
+.main a.file::before {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' enable-background='new 0 0 24 24' width='16' height='16'%3E %3Cpath d='M 3 0 L 3 24 L 21 24 L 21 8 L 21 7 L 14 0 L 13 0 L 3 0 z M 5 2 L 13 2 L 13 8 L 19 8 L 19 22 L 5 22 L 5 2 z'/%3E %3C/svg%3E");
+}
+
+/* https://feathericons.com/?query=alert-triangle
+ */
+.warn {
+	display:inline-block;
+	width: 16px;
+	height: 16px;
+	top: 3.5px;
+	position: relative;
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E %3Cline x1='12' y1='9' x2='12' y2='13'/%3E %3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E %3C/svg%3E");
+}
+
+/* https://feathericons.com/?query=info
+ */
+.info {
+	display:inline-block;
+	width: 16px;
+	height: 16px;
+	top: 3.5px;
+	position: relative;
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E %3Cline x1='12' y1='9' x2='12' y2='13'/%3E %3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E %3C/svg%3E");
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-info'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='16' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'%3E%3C/line%3E%3C/svg%3E");
+}
+
+.shade {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	background: rgba(0,0,0,0.5);
+}
+.dialog {
+	max-width: 80%;
+	background: white;
+	max-height: 100%;
+	overflow: auto;
+}
+.dialog h2 {text-align:center}
+.dialog button {width:100%}
+.dialog td{white-space: nowrap}
+
+/* https://codepen.io/thetallweeks/pen/yybGra */
+.loading {
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+}
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+@keyframes ellipsis {to {width: 1.25em;} }
+
+</style></head><body>
+<div class="bar">
+	<fieldset class="actions"><legend>What to do when you click a file</legend>
+		<label>
+			<input type="radio" name="file_action" id="file_dl">
+			Download
+		</label>
+		<br>
+		<label>
+			<input type="radio" name="file_action" checked id="file_open">
+			View it
+			<span class="info" title="Only if file format is supported by the browser. Otherwise, it will be downloaded"></span>
+		</label>
+		<br>
+		<label>
+			<input type="radio" name="file_action" id="file_show">
+			Show all its versions
+		</label>
+	</fieldset>
+	<fieldset class="actions"><legend>Actions</legend>
+		<button id="tar-btn">Download whole directory</button>
+		<a id="tar-lnk">Download whole directory</a>
+		<br>
+		<button id="gallery-btn">Open gallery</button>
+	</fieldset>
+	<fieldset class="nav"><legend>Timeline</legend>
+		<input type="range" id="q" list="marks">
+		<label>
+			<input type="checkbox" id="show_questionable_times"/>
+			Include questionable times
+			<span class="warn" title="Questionable times might have some files missing"></span>
+		</label>
+	</fieldset>
+</div>
+<fieldset class="">
+	<legend>
+		Contents of directory
+		<span id="path"></span>
+		at time:
+		<span id="time"></span>
+	</legend>
+	<div class="main" id="here">
+		<div class="loading">Loading</div>
+	</div>
+</fieldset>
+<div class="file shade" id="file_group" style="display:none">
+	<div class="dialog">
+		<h2>All versions of file</h2>
+		<table border="1">
+			<thead><tr><th>Filename</th><th>Created</th><th>Deleted</th><th>Importance</th></tr></thead>
+			<tbody id="file_list"></tbody>
+		</table>
+		<button id="file_close">Close</button>
+	</div>
+</div>
+<datalist id="marks" style="display:none">
+</datalist>
+<script src="script.js"></script>
+</body></html>
