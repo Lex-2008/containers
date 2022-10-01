@@ -1,3 +1,7 @@
+# исключены через robots.txt
+gemini://gemini.quietplace.xyz/~razzlom/gemlog/drafts/
+# дублируются где-то ещё
+gemini://pub.phreedom.club/~tolstoevsky
 # много страниц и мало интересного
 gemini://causa-arcana.com/assets/
 gemini://phreedom.club/circumlunar-transmissions/
@@ -6,6 +10,10 @@ gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
 gemini://phreedom.club/gmisub/
+gemini://pub.phreedom.club/~localhost/Lies_science.gmi
+gemini://pub.phreedom.club/crypto.gmi
+gemini://pub.phreedom.club/fiat.gmi
+gemini://pub.phreedom.club/vk/
 gemini://topotun.dynu.com/cgi-bin/bad.cgi
 gemini://topotun.dynu.com/cgi-bin/good.cgi
 gemini://topotun.dynu.com/fakenews.txt
