@@ -9,6 +9,7 @@ NOVOTES=/data/votes/novote.txt
 
 # if you can't vote or are stalker then I don't need to process links
 grep -Fxq "$remote_ip" "$NOVOTES" && cat
+[[ "$remote_ip" =~ ^185\\.220\\.100\\. ]] && cat # botnet?
 [[ "$remote_ip" =~ ^172\\.17\\. ]] && cat
 
 # CSRF-protect vote links

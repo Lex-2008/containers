@@ -23,6 +23,7 @@ test -f "$DATA.sh" || exit 1
 ### verify
 
 grep -Fxq "$remote_ip" "$NOVOTES" && err "your IP blacklisted for voting"
+[[ "$remote_ip" =~ ^185\\.220\\.100\\. ]] && err "your subnet blacklisted for voting"
 
 test -z "$option" && local_perm_redir "$OUT_URL"
 test -z "$token" && local_perm_redir "$OUT_URL"
