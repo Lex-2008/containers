@@ -137,6 +137,7 @@ dosite gemini://kirill.zholnay.name/
 dosite gemini://lesarbr.es/
 dosite gemini://levochki.sysrq.in/
 dosite gemini://omega9.flounder.online/
+dosite gemini://ostov.ml/
 dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
 dosite gemini://pub.phreedom.club/
