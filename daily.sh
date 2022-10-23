@@ -3,7 +3,7 @@ cd /containers/
 docker exec bind rndc -p9533 sync -clean
 docker exec dovecot sh /data/expunge.sh
 test -f gemini.cont/data/votes/tokens.txt && mv gemini.cont/data/votes/tokens.txt gemini.cont/data/votes/yestertokens.txt || rm gemini.cont/data/votes/yestertokens.txt
-docker run --rm -v $PWD/ancha.cont/data:/data -v $PWD/nginx.cont/data/public/alexey.shpakovsky.ru/unlisted/:/out ancha >$PWD/ancha.cont/last.log 2>&1
+docker run --rm -v $PWD/ancha.cont/data:/data -v $PWD/nginx.cont/data/public/ancha-times.shpakovsky.ru:/out ancha >ancha.cont/last.log 2>&1
 
 rm -f /tmp/emails.*
 

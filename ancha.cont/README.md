@@ -14,15 +14,27 @@ Features:
 * auto-generated subtitles are converted to plaintext file with "links"
   to relevant time of the video
 
-As of writing, you can see results [here][].
+Drawbacks:
 
-[here]: http://alexey.shpakovsky.ru/unlisted/times.html
+* Comments are not fetched - if channel author didn't put time marks into description
+  (but keeps them in a comments, even in a pinned one) - they are not fetched.
+
+* Descriptions edited more than a week after original upload are not re-fetched anymore
+  To fix, manually remove relevant `*.description` file and run `dl.sh` -
+  video will be refetched anew.
+
+* If a video title was changed less than a week after a video was uploaded -
+  it causes duplicate entries. To fix, manually remove obsolete `*.description`
+  and similarly-named subtitle files.
+
+To see results, navigate to <http://ancha-times.chat.ru/>
 
 Requirements
 ------------
 
-Currently designed to run on Debian 11 "bullseye" with Python3 (hard dependency)
-and zip (weak dependency, only to compress subtitles txt file) installed.
+Currently designed to run on Debian 11 "bullseye" with Python3 (hard dependency),
+zip (weak dependency, only to compress subtitles txt file), and
+curl (weak dependency, only to upload artifacts to third-party servers) installed.
 
 Usage with Docker
 -----------------

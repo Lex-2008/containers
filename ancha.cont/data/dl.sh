@@ -5,6 +5,8 @@ TIMES="$OUT/times.html"
 
 ls *.description | python3 recent.py 7 youtube >da.txt
 
+set -x
+
 if test -f yt-dlp; then
 	./yt-dlp -U
 else
@@ -20,6 +22,8 @@ rm NA-UCXJYy66gIOEsT04ndBUBFPw*
 cp template.txt subs.txt
 
 sed '/HERE/,$d' template.html >"$TIMES"
+
+set +x
 
 export IFS='
 '
@@ -60,11 +64,21 @@ done
 
 exec >/dev/null
 
+set -x
+
 sed '1,/HERE/d' template.html >>"$TIMES"
+gzip -kf "$TIMES"
 
-gzip -1c subs.txt >"$OUT/subs.txt.gz"
+zip -1l subs.zip subs.txt
+gzip -1f subs.txt
 
-#sed -i 's/$/\r/' subs.txt
-zip -1l "$OUT/subs.zip" subs.txt
+# this file must contain usernames and passwords for services used further,
+# in format like this:
+# SERVICE_USERPASS=username:password
+. ./secrets.txt
 
-rm subs.txt
+#curl --silent --user "$CHATRU_USERPASS" --upload-file index.koi8r.html ftp://ancha-times.chat.ru/index.html
+curl --silent --user "$MAILRU_USERPASS" --upload-file subs.zip "https://webdav.cloud.mail.ru/subs.zip"
+curl --silent --user "$MAILRU_USERPASS" --upload-file subs.txt.gz "https://webdav.cloud.mail.ru/subs.txt.gz"
+
+rm subs.*

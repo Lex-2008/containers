@@ -1,0 +1,25 @@
+<!doctype html><html lang=ru><head><meta charset="koi8-r"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Видео Анчи Барановой</title>
+</head><body>
+Загрузка: <span id="progress">??</span>%
+<script>
+var progress=document.getElementById('progress');
+function progressEvent(e) {
+	progress.innerText=Math.round(e.loaded/e.total*100);
+}
+function stateEvent() {
+	if (xhr.readyState == 4) {
+		document.head.innerHTML=xhr.response.match(/<h[e]ad>(.*)<\/h[e]ad>/s)[1];
+		document.body.innerHTML=xhr.response.match(/<b[o]dy>(.*)<\/b[o]dy>/s)[1]+
+			// preserve ads at the bottom of the page
+			document.body.innerHTML.match(/<\/script>(<\/[a-z]*>)*(.*)/s)[2];
+		// please let me know if chat.ru starts adding ads at the top
+	}
+}
+xhr = new XMLHttpRequest();
+xhr.open('GET', location.href.split('.')[0]+atob('LnNocGFrb3Zza3kucnUvdGltZXMuaHRtbA=='));
+// xhr.setRequestHeader('X-Auth', '123');
+xhr.onprogress = progressEvent;
+xhr.onreadystatechange = stateEvent;
+xhr.send();
+</script></body></html>
