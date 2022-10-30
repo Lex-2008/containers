@@ -51,6 +51,7 @@ dosite_main() {
 		echo '' >>"$OUTFILE"
 		echo "### $title" >>"$OUTFILE"
 		cat "$tmp-site" >>"$OUTFILE"
+		touch "last-update/$dirname"
 	fi
 	rm -rf "$bak"
 	mv "$old" "$bak"
