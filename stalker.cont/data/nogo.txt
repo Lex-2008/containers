@@ -9,6 +9,7 @@ gemini://phreedom.club/git/
 gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
+gemini://offpunk.com/sphere.gmi
 gemini://phreedom.club/gmisub/
 gemini://pub.phreedom.club/~localhost/Lies_science.gmi
 gemini://pub.phreedom.club/crypto.gmi
