@@ -26,7 +26,7 @@ for url in sys.stdin.readlines():
     if not good:
         continue
     url=url.strip()
-    for ext in ['.png', '.gif', '.jpg', '.jpeg', '.pdf', '.webp', '.mp3', '.ogg', '.zip', '/atom.xml']:
+    for ext in ['.png', '.gif', '.jpg', '.jpeg', '.pdf', '.webp', '.mp3', '.ogg', '.pk3', '.zip', '/atom.xml']:
         if url.endswith(ext):
             # print('ext: '+url)
             good=False
