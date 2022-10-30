@@ -129,6 +129,8 @@ dosite gemini://armitage.flounder.online/ index.gmi
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://causa-arcana.com/ '' '' '# Directory listing'
 dosite gemini://gemini.quietplace.xyz/
+dosite gemini://gemlog.blue/users/3550/
+dosite gemini://3550.cities.yesterweb.org/ index.gmi
 dosite gemini://gemlog.blue/users/abrbus/
 dosite gemini://gemlog.blue/users/musu_pilseta/
 dosite gemini://gemlog.blue/users/spelltoad/
@@ -137,6 +139,7 @@ dosite gemini://karabas.flounder.online/
 dosite gemini://kirill.zholnay.name/
 dosite gemini://lesarbr.es/
 dosite gemini://levochki.sysrq.in/
+dosite gemini://offpunk.com/
 dosite gemini://omega9.flounder.online/
 dosite gemini://ostov.ml/
 dosite gemini://parthen.smol.pub/
