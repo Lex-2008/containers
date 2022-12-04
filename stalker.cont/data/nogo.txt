@@ -9,6 +9,7 @@ gemini://phreedom.club/git/
 gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
+gemini://geddit.phreedom.club/s/
 gemini://offpunk.com/sphere.gmi
 gemini://ostov.ml/ai.gmi
 gemini://phreedom.club/gmisub/
@@ -21,6 +22,7 @@ gemini://topotun.dynu.com/cgi-bin/good.cgi
 gemini://topotun.dynu.com/fakenews.txt
 gemini://topotun.dynu.com/shentrocode.txt
 # по мнению редакции, эти страницы никому не интересны
+gemini://geddit.phreedom.club/c/
 gemini://alexey.shpakovsky.ru/rulog/flags.gmi
 gemini://stalker.shpakovsky.ru/log.txt
 gemini://stalker.shpakovsky.ru/nogo.txt

@@ -128,12 +128,15 @@ dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://causa-arcana.com/ '' '' '# Directory listing'
+dosite gemini://geddit.phreedom.club/
 dosite gemini://gemini.quietplace.xyz/
 dosite gemini://gemlog.blue/users/3550/
 dosite gemini://3550.cities.yesterweb.org/ index.gmi
 dosite gemini://gemlog.blue/users/abrbus/
 dosite gemini://gemlog.blue/users/musu_pilseta/
+dosite gemini://gemlog.blue/users/ScottLoard/
 dosite gemini://gemlog.blue/users/spelltoad/
+dosite gemini://hsdchannel.cities.yesterweb.org/ index.gmi
 dosite gemini://hugeping.ru/
 dosite gemini://karabas.flounder.online/
 dosite gemini://kirill.zholnay.name/
@@ -147,8 +150,10 @@ dosite gemini://phreedom.club/ '' index.gmi
 dosite gemini://pub.phreedom.club/
 dosite gemini://sdf.org/xyz/
 dosite gemini://simonvolpert.com/
+dosite gemini://spiri-leo.cities.yesterweb.org/
 dosite gemini://spline-online.tk/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
+dosite gemini://subpoena.gleeze.com/
 dosite gemini://sysrq.in/ru/
 dosite gemini://tilde.team/~avarnex/ index.gmi
 dosite gemini://tilde.team/~kull/
