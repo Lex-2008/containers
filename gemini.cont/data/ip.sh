@@ -30,9 +30,6 @@ case "$req" in
 		Your IP is: $remote_ip
 
 		=> /whois	WHOIS information about your IP
-
-		=> gemini://ip4.shpakovsky.ru/ IPv4-only test
-		=> gemini://ip6.shpakovsky.ru/ IPv6-only test
 		" | sed 's/^\t*//'
 
 		;;
