@@ -15,7 +15,6 @@ docker run -d -v $PWD/logshow.cont/data:/data -v $PWD/nginx.cont/data/logs:/ngin
 docker run -d -v $PWD/dyndns.cont/data:/data -v $PWD/bind.cont/data/key.conf:/key.conf --link bind:bind -p 127.0.0.1:8004:8000 --name=dyndns dyndns
 docker run -d -v $PWD/opendkim-testmsg.cont/data:/data -p 127.0.0.1:8005:8000 --name=opendkim-testmsg opendkim-testmsg
 docker run -d -v $PWD/calc.cont/data:/data -p 127.0.0.1:8006:8000 --name=calc calc
-docker run -d -v $PWD/dropbox.cont/data:/data -p 127.0.0.1:8007:8000 --name=dropbox dropbox
 docker run -d -v $PWD/backup3-demo.cont/data:/data -p 127.0.0.1:8009:8000 --name=backup3-demo backup3-demo
 
 # docker run -d -v $PWD/gotosocial.cont/data:/gotosocial/storage -p 127.0.0.1:8010:8080 -e GTS_LANDING_PAGE_USER=alexey -e GTS_HOST=gts.shpakovsky.ru -e GTS_ACCOUNT_DOMAIN=shpakovsky.ru -e GTS_TRUSTED_PROXIES=172.17.0.0/16 -e GTS_DB_TYPE=sqlite -e GTS_DB_ADDRESS=/gotosocial/storage/sqlite.db -e GTS_SMTP_HOST=postfix -e GTS_SMTP_PORT=25 -e GTS_SMTP_FROM=gotosocial@shpakovsky.ru --link=postfix:postfix --name=gotosocial superseriousbusiness/gotosocial
