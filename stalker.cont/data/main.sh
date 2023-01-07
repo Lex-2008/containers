@@ -130,6 +130,7 @@ dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://causa-arcana.com/ '' '' '# Directory listing'
+dosite gemini://davincis23.cities.yesterweb.org/
 dosite gemini://geddit.phreedom.club/
 dosite gemini://gemini.quietplace.xyz/
 dosite gemini://gemlog.blue/users/3550/
@@ -138,6 +139,7 @@ dosite gemini://gemlog.blue/users/abrbus/
 dosite gemini://gemlog.blue/users/musu_pilseta/
 dosite gemini://gemlog.blue/users/ScottLoard/
 dosite gemini://gemlog.blue/users/spelltoad/
+# dosite gemini://gemlog.stargrave.org/ '?offset=0' # too big
 dosite gemini://hsdchannel.cities.yesterweb.org/ index.gmi
 dosite gemini://hugeping.ru/
 dosite gemini://karabas.flounder.online/
