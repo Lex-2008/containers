@@ -18,6 +18,11 @@ docker run -d -v $PWD/calc.cont/data:/data -p 127.0.0.1:8006:8000 --name=calc ca
 docker run -d -v $PWD/dropbox.cont/data:/data -p 127.0.0.1:8007:8000 --name=dropbox dropbox
 docker run -d -v $PWD/backup3-demo.cont/data:/data -p 127.0.0.1:8009:8000 --name=backup3-demo backup3-demo
 
+# docker run -d -v $PWD/gotosocial.cont/data:/gotosocial/storage -p 127.0.0.1:8010:8080 -e GTS_LANDING_PAGE_USER=alexey -e GTS_HOST=gts.shpakovsky.ru -e GTS_ACCOUNT_DOMAIN=shpakovsky.ru -e GTS_TRUSTED_PROXIES=172.17.0.0/16 -e GTS_DB_TYPE=sqlite -e GTS_DB_ADDRESS=/gotosocial/storage/sqlite.db -e GTS_SMTP_HOST=postfix -e GTS_SMTP_PORT=25 -e GTS_SMTP_FROM=gotosocial@shpakovsky.ru --link=postfix:postfix --name=gotosocial superseriousbusiness/gotosocial
+
+docker run -d -v $PWD/microblog.cont/microblog.pub:/app -p 127.0.0.1:8011:8000 --name microblog microblog
+# docker run -d -v $PWD/microblog.cont/microblog.test:/app -p 127.0.0.1:8012:8000 --name microblogtest microblog
+
 # gemini
 docker run -d -v $PWD/gemini.cont/data:/data -p 127.0.0.1:1966:1234 --name=gemini gemini nc -lk -p 1234 -e /data/server.sh
 docker run -d -v $PWD/ggstproxy.cont/data:/data -p 127.0.0.1:8008:8000 --link gemini:gemini --name=ggstproxy ggstproxy
