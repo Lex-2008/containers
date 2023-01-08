@@ -15,3 +15,5 @@ savelog() {
 savelog spam-emails spam-emails-3
 savelog relay-attempts
 savelog wrong-users
+
+cd ->/dev/null
