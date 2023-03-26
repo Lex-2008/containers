@@ -30,6 +30,8 @@ comm -2 -3 "$tmp-old.txt" "$tmp-new.txt" | sed 's/.*/* & [УДЛ]/' >"$tmp-del.t
 
 comm -1 -2 "$tmp-new.txt" "$tmp-old.txt" >"$tmp-both.txt"
 
+rm -f "$tmp-out.txt"
+
 while read -r line; do
 	difffn="diff-$RANDOM-$RANDOM.txt"
 	diff="$OUT/$difffn"
@@ -49,8 +51,10 @@ while read -r line; do
 	fi
 	url="$(cat "$OLD/${line%.dat}.url")"
 	#relurl="${url: -${#BASE}}" # we don't have BASE here anymore
-	echo "=> $url $url [ИЗМ]">>"$OUTFILE"
-	echo "=> $difffn $url [$mod]">>"$OUTFILE"
+	echo "=> $url $url [ИЗМ]">>"$tmp-out.txt"
+	echo "=> $difffn $url [$mod]">>"$tmp-out.txt"
 done <"$tmp-both.txt"
+
+sort "$tmp-out.txt" >>"$OUTFILE"
 
 cat "$tmp-del.txt" >>"$OUTFILE"
