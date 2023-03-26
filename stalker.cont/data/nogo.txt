@@ -8,17 +8,23 @@ gemini://causa-arcana.com/assets/
 gemini://phreedom.club/circumlunar-transmissions/
 gemini://phreedom.club/git/
 gemini://simonvolpert.com/cgi-bin/buy
+# страницы, которые не должны меняться
+gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
+gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
 gemini://geddit.phreedom.club/s/
+gemini://geddit.phreedom.club/latest_comments
 gemini://offpunk.com/sphere.gmi
 gemini://ostov.ml/ai.gmi
 gemini://phreedom.club/gmisub/
-gemini://pub.phreedom.club/~localhost/Lies_science.gmi
 gemini://pub.phreedom.club/~localhost/donate.gmi
+gemini://pub.phreedom.club/~localhost/indexer/tech_indexer.gmi
+gemini://pub.phreedom.club/~localhost/shuffle_sweets_for_tea.gmi
 gemini://pub.phreedom.club/crypto.gmi
 gemini://pub.phreedom.club/fiat.gmi
 gemini://pub.phreedom.club/vk/
+gemini://things.leemoon.network/frssoft/public_gemini/shuffle_sweets_for_tea.gmi
 gemini://topotun.dynu.com/cgi-bin/bad.cgi
 gemini://topotun.dynu.com/cgi-bin/good.cgi
 gemini://topotun.dynu.com/fakenews.txt

@@ -24,6 +24,7 @@ dosite_main() {
 	index="$2"
 	deindex="$3"
 	delline="$4"
+	maxurlcount="$5"
 	host="${base:9}"
 	host="${host%%/*}"
 	title="${base:9:-1}"
@@ -43,7 +44,7 @@ dosite_main() {
 	old="data/$dirname"
 	bak="bak/$dirname"
 	mkdir -p "$new"
-	./mirror.sh "$host" "$base" "$new" "$index" "$deindex"
+	./mirror.sh "$host" "$base" "$new" "$index" "$deindex" "$maxurlcount"
 	if test "$delline"; then
 		# delete all *.dat files containing delline
 		grep -lFx "$delline" "$new"/*.dat | xargs rm
@@ -129,8 +130,8 @@ dosite gemini://alexey.shpakovsky.ru/rulog/
 dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
-dosite gemini://causa-arcana.com/ '' '' '# Directory listing'
 dosite gemini://davincis23.cities.yesterweb.org/
+dosite gemini://flayer.vern.cc/ index.gmi
 dosite gemini://geddit.phreedom.club/
 dosite gemini://gemini.quietplace.xyz/
 dosite gemini://gemlog.blue/users/3550/
@@ -151,7 +152,7 @@ dosite gemini://omega9.flounder.online/
 dosite gemini://ostov.ml/
 dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
-dosite gemini://pub.phreedom.club/
+dosite gemini://pub.phreedom.club/ '' '' '' 500
 dosite gemini://sdf.org/xyz/
 dosite gemini://simonvolpert.com/
 dosite gemini://spiri-leo.cities.yesterweb.org/
@@ -159,9 +160,11 @@ dosite gemini://spline-online.tk/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
 dosite gemini://subpoena.gleeze.com/
 dosite gemini://sysrq.in/ru/
+dosite gemini://textgamesinfo.ru/
+dosite gemini://things.leemoon.network/
 dosite gemini://tilde.team/~avarnex/ index.gmi
 dosite gemini://tilde.team/~kull/
-dosite gemini://tilde.team/~rami/ index.gmi
+dosite gemini://tilde.team/~rami/ index.gmi '' '' 500
 dosite gemini://tilde.team/~runation/ index.gmi
 dosite gemini://topotun.dynu.com/ index.gmi
 dosite gemini://ychbn.flounder.online/ index.gmi
