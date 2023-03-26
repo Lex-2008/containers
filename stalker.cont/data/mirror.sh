@@ -8,12 +8,14 @@
 #  dir to save output
 #  start page to start mirroring from
 #  filename to strip from URLs ('index.gmi' to index directories only once)
+#  maximum number of urls to fetch (200 by default)
 
 HOST="$1"
 BASE="$2"
 DATA="$3"
 index="$4"
 deindex="$5"
+maxurlcount="${6:-200}"
 
 tmp=/tmp/mirror
 tab="$(echo -e '\t')"
@@ -92,7 +94,7 @@ while test -s "$tmp-thisurls.txt"; do
 	test -s "$tmp-thisurls.txt" || break
 	new_local_urls "$tmp-newurls.txt" "$tmp-hasurls.sorted" "$tmp-thisurls.txt"
 	urlcount="$(cat "$tmp-hasurls.sorted" "$tmp-thisurls.txt" | wc -l)"
-	if test "$urlcount" -ge 200; then
+	if test "$urlcount" -ge "$maxurlcount"; then
 		echo '' | tee -a "$DATA/warning.txt"
 		echo "Запредельное значение счетчика ссылок: $urlcount, новые (пропущенные) адреса:" | tee -a "$DATA/warning.txt"
 		cat "$tmp-thisurls.txt" | tee -a "$DATA/warning.txt"
