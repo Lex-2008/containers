@@ -51,10 +51,9 @@ while read -r line; do
 	fi
 	url="$(cat "$OLD/${line%.dat}.url")"
 	#relurl="${url: -${#BASE}}" # we don't have BASE here anymore
-	echo "=> $url $url [ИЗМ]">>"$tmp-out.txt"
-	echo "=> $difffn $url [$mod]">>"$tmp-out.txt"
+	echo "=> $url $url [ИЗМ]|=> $difffn $url [$mod]">>"$tmp-out.txt"
 done <"$tmp-both.txt"
 
-sort "$tmp-out.txt" >>"$OUTFILE"
+sort "$tmp-out.txt" | tr '|' '\n' >>"$OUTFILE"
 
 cat "$tmp-del.txt" >>"$OUTFILE"
