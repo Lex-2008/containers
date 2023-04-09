@@ -1,5 +1,6 @@
 # исключены через robots.txt
 gemini://gemini.quietplace.xyz/~razzlom/gemlog/drafts/
+gemini://mo.rijndael.cc/
 # дублируются где-то ещё
 gemini://phreedom.club/~tolstoevsky/tags
 gemini://pub.phreedom.club/~tolstoevsky
@@ -20,10 +21,15 @@ gemini://ostov.ml/ai.gmi
 gemini://phreedom.club/gmisub/
 gemini://pub.phreedom.club/~localhost/donate.gmi
 gemini://pub.phreedom.club/~localhost/indexer/tech_indexer.gmi
+gemini://pub.phreedom.club/~localhost/joblab/
 gemini://pub.phreedom.club/~localhost/shuffle_sweets_for_tea.gmi
+gemini://pub.phreedom.club/cgi-bin/milkspace/wall/statistic.cgi
 gemini://pub.phreedom.club/crypto.gmi
 gemini://pub.phreedom.club/fiat.gmi
 gemini://pub.phreedom.club/vk/
+gemini://things.leemoon.network/frssoft/public_gemini/donate.gmi
+gemini://things.leemoon.network/frssoft/public_gemini/indexer/tech_indexer.gmi
+gemini://things.leemoon.network/frssoft/public_gemini/joblab/
 gemini://things.leemoon.network/frssoft/public_gemini/shuffle_sweets_for_tea.gmi
 gemini://topotun.dynu.com/cgi-bin/bad.cgi
 gemini://topotun.dynu.com/cgi-bin/good.cgi

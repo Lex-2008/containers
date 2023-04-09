@@ -131,6 +131,7 @@ dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
 dosite gemini://davincis23.cities.yesterweb.org/
+dosite gemini://feerzlay.ru/
 dosite gemini://flayer.vern.cc/ index.gmi
 dosite gemini://geddit.phreedom.club/
 dosite gemini://gemini.quietplace.xyz/
@@ -147,6 +148,7 @@ dosite gemini://karabas.flounder.online/
 dosite gemini://kirill.zholnay.name/
 dosite gemini://lesarbr.es/
 dosite gemini://levochki.sysrq.in/
+dosite gemini://mo.rijndael.cc/
 dosite gemini://offpunk.com/
 dosite gemini://omega9.flounder.online/
 dosite gemini://ostov.ml/
