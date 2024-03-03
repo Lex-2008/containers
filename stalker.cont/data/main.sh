@@ -130,10 +130,14 @@ dosite gemini://alexey.shpakovsky.ru/rulog/
 dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
+dosite gemini://causa-arcana.com/ru/ index.gmi
 dosite gemini://davincis23.cities.yesterweb.org/
+dosite gemini://dmntv.ru/
+dosite gemini://domik.dubro.ru/
 dosite gemini://feerzlay.ru/
 dosite gemini://flayer.vern.cc/ index.gmi
 dosite gemini://geddit.phreedom.club/
+dosite gemini://gemini.dluciv.name/
 dosite gemini://gemini.quietplace.xyz/
 dosite gemini://gemlog.blue/users/3550/
 dosite gemini://3550.cities.yesterweb.org/ index.gmi
@@ -156,9 +160,12 @@ dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
 dosite gemini://pub.phreedom.club/ '' '' '' 500
 dosite gemini://sdf.org/xyz/
+dosite gemini://sikmir.ru/
 dosite gemini://simonvolpert.com/
+dosite gemini://sn4il.site/
 dosite gemini://spiri-leo.cities.yesterweb.org/
-dosite gemini://spline-online.tk/
+dosite gemini://spline-online.ru/
+dosite gemini://sguardo.structbio.net/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
 dosite gemini://subpoena.gleeze.com/
 dosite gemini://sysrq.in/ru/
@@ -169,6 +176,7 @@ dosite gemini://tilde.team/~kull/
 dosite gemini://tilde.team/~rami/ index.gmi '' '' 500
 dosite gemini://tilde.team/~runation/ index.gmi
 dosite gemini://topotun.dynu.com/ index.gmi
+dosite gemini://vision.spb.ru/
 dosite gemini://ychbn.flounder.online/ index.gmi
 
 # c https://stackoverflow.com/a/15515152
