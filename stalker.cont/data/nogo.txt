@@ -12,24 +12,36 @@ gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые не должны меняться
 gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
 gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
+gemini://tilde.team/~rami/br
+gemini://tilde.team/~rami/rb
 # страницы, которые меняются каждый день или чаще
 # проверяйте их вручную, там всегда есть изменения
+gemini://hugeping.ru/reinlog.gmi
 gemini://geddit.phreedom.club/s/
 gemini://geddit.phreedom.club/latest_comments
+gemini://gemini.dluciv.name/cgi-bin/sysinfo
 gemini://offpunk.com/sphere.gmi
 gemini://ostov.ml/ai.gmi
 gemini://phreedom.club/gmisub/
+gemini://pub.phreedom.club/~localhost/citrine/
 gemini://pub.phreedom.club/~localhost/donate.gmi
 gemini://pub.phreedom.club/~localhost/indexer/tech_indexer.gmi
 gemini://pub.phreedom.club/~localhost/joblab/
+gemini://pub.phreedom.club/~localhost/kineto_stats
 gemini://pub.phreedom.club/~localhost/shuffle_sweets_for_tea.gmi
 gemini://pub.phreedom.club/cgi-bin/milkspace/wall/statistic.cgi
 gemini://pub.phreedom.club/crypto.gmi
 gemini://pub.phreedom.club/fiat.gmi
 gemini://pub.phreedom.club/vk/
+gemini://sguardo.structbio.net/tatlin/tatlin.gmi
+gemini://sn4il.site/meditation.gmi
+gemini://things.leemoon.network/frssoft/citrine
+gemini://things.leemoon.network/frssoft/public_gemini/citrine/
 gemini://things.leemoon.network/frssoft/public_gemini/donate.gmi
 gemini://things.leemoon.network/frssoft/public_gemini/indexer/tech_indexer.gmi
 gemini://things.leemoon.network/frssoft/public_gemini/joblab/
+gemini://things.leemoon.network/frssoft/public_gemini/kineto_stats
+gemini://things.leemoon.network/frssoft/public_gemini/online_check.gmi
 gemini://things.leemoon.network/frssoft/public_gemini/shuffle_sweets_for_tea.gmi
 gemini://topotun.dynu.com/cgi-bin/bad.cgi
 gemini://topotun.dynu.com/cgi-bin/good.cgi
