@@ -10,19 +10,23 @@ echo
 # export QUERY_STRING='query'
 
 zone="dyn.shpakovsky.ru"
-host="$HTTP_X_REAL_USER.$zone"
+user="$HTTP_X_REAL_USER"
+host="$user.$zone"
+ip="${QUERY_STRING:-$HTTP_X_REAL_IP}"
 
-expr "$HTTP_X_REAL_IP" : '.*\.' >/dev/null && atype=A
-expr "$HTTP_X_REAL_IP" : '.*:' >/dev/null && atype=AAAA
+# echo "setting [$ip] for [$user]"
+
+expr "$ip" : '.*\.' >/dev/null && atype=A
+expr "$ip" : '.*:' >/dev/null && atype=AAAA
 
 test -z "$atype" && exit 1
 
-grep -qsF "$HTTP_X_REAL_IP" "/tmp/dyndns-$HTTP_X_REAL_USER-$atype" && exit 0
+grep -qsF "$ip" "/tmp/dyndns-$user-$atype" && exit 0
 
 echo "server bind 5353
 zone $zone
 del $host $atype
-add $host 1 $atype $HTTP_X_REAL_IP
+add $host 1 $atype $ip
 send" | nsupdate -k /key.conf
 
-echo "$HTTP_X_REAL_IP" >"/tmp/dyndns-$HTTP_X_REAL_USER-$atype"
+echo "$ip" >"/tmp/dyndns-$user-$atype"

@@ -13,3 +13,7 @@ Both IPv4 and IPv6 addresses are supported, but only one of them is set each tim
 	wget -q4 --user=user1 --password=mypassword https://dyn.shpakovsky.ru/
 
 where dyn.shpakovsky.ru is the upstream proxy.
+
+To pass desired IP address instead of relying on autodetection, add it as a query argument, like this:
+
+	wget -q4 --user=user1 --password=mypassword https://dyn.shpakovsky.ru/?1.2.3.4
