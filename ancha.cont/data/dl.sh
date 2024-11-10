@@ -3,6 +3,9 @@
 OUT=/out
 TIMES="$OUT/times.html"
 
+# delete duplicate description files
+ls *.description | cut -c10-20 | uniq -c | awk '$1=='2' {print $2}' | xargs -I % sh -c 'rm *%*'
+
 ls *.description | python3 recent.py 7 youtube >da.txt
 
 set -x
