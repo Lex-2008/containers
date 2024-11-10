@@ -7,4 +7,6 @@ mv `find -maxdepth 1 -type f` logs-$DATE
 
 docker exec nginx nginx -s reopen -c /data/conf/nginx.conf
 
-gzip logs-$DATE/*.log
+find logs-$DATE -empty -delete
+
+gzip logs-$DATE/*.log logs-$DATE/*.json
