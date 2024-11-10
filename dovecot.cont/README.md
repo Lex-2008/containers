@@ -47,12 +47,18 @@ and `out.sieve` for filtering outgoing email.
 	For users who like messages from strangers (people not in their address book) to be sorted directly to trash,
 	add this at the end of their sieve file:
 
-		elsif not address :is "from" [
-		### auto-trash ###
+		elsif address :is "from" [
+		### contacts begin ###
+		### contacts end ###
+		"x"]{ keep; }
+		else { fileinto "Trash"; }
 
 	and run the `daily.sh` script in parent dir.
 
 	Note that `elsif` assumes there are other conditions above.
+	Also note that you might have other `elsif` blocks before final `else` -
+	in case you want to do something extra sorting for messages-from-non-friends,
+	for example based on "+" tags.
 
 * To auto-delete (expunge) old messages (say, from Trash and spam),
 create `expunge.txt` files next to each of the user's Maildir directories,

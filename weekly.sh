@@ -1,7 +1,9 @@
+set -x
+
 cd /containers
 
 # logrotate
-ls *.cont/logrotate.sh | xargs -l sh
+ls *.cont/logrotate.sh | xargs -I% sh -c 'echo [%]; sh -x %'
 
 /containers/dehydrated.cont/run.sh
 
