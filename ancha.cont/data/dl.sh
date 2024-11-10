@@ -42,7 +42,7 @@ for f in `ls -1 *.description`; do
 
 	exec >>"$TIMES"
 
-	echo "<details><summary><h2 id="s$id"><a href='$url'>$date</a> - $title</h2></summary>"
+	echo "<details id="s$id"><summary><h2><a href='$url'>$date</a> - $title</h2></summary>"
 	cat $fn.description | python3 linkify.py "$url&t=" | sed 's/$/<br>/'
 	echo '</details>'
 
