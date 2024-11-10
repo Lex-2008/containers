@@ -10,6 +10,7 @@ gemini://phreedom.club/circumlunar-transmissions/
 gemini://phreedom.club/git/
 gemini://simonvolpert.com/cgi-bin/buy
 # страницы, которые не должны меняться
+gemini://any-key.press/vgi/gtransl/
 gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
 gemini://things.leemoon.network/frssoft/public_gemini/Lies_dybr/20
 gemini://tilde.team/~rami/br
@@ -21,6 +22,7 @@ gemini://geddit.phreedom.club/s/
 gemini://geddit.phreedom.club/latest_comments
 gemini://gemini.dluciv.name/cgi-bin/sysinfo
 gemini://offpunk.com/sphere.gmi
+gemini://offpunk.com/sphere.xml
 gemini://ostov.ml/ai.gmi
 gemini://phreedom.club/gmisub/
 gemini://pub.phreedom.club/~localhost/citrine/
@@ -49,7 +51,10 @@ gemini://topotun.dynu.com/fakenews.txt
 gemini://topotun.dynu.com/shentrocode.txt
 # по мнению редакции, эти страницы никому не интересны
 gemini://geddit.phreedom.club/c/
+gemini://geminispace.ru/?w=
 gemini://alexey.shpakovsky.ru/rulog/flags.gmi
 gemini://stalker.shpakovsky.ru/log.txt
 gemini://stalker.shpakovsky.ru/nogo.txt
 gemini://stalker.shpakovsky.ru/today.gmi
+# английский
+gemini://polyserv.xyz/en/

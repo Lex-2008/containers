@@ -126,7 +126,9 @@ case "$1" in
 		exit 1
 esac
 
+dosite gemini://academia.fzrw.info/ru/
 dosite gemini://alexey.shpakovsky.ru/rulog/
+dosite gemini://any-key.press/
 dosite gemini://armitage.flounder.online/ index.gmi
 # dosite gemini://basnja.ru/ # too big
 dosite gemini://byzoni.org/ index.gmi
@@ -139,10 +141,12 @@ dosite gemini://flayer.vern.cc/ index.gmi
 dosite gemini://geddit.phreedom.club/
 dosite gemini://gemini.dluciv.name/
 dosite gemini://gemini.quietplace.xyz/
+dosite gemini://geminispace.ru/
 dosite gemini://gemlog.blue/users/3550/
 dosite gemini://3550.cities.yesterweb.org/ index.gmi
 dosite gemini://gemlog.blue/users/abrbus/
 dosite gemini://gemlog.blue/users/musu_pilseta/
+dosite gemini://gemlog.blue/users/Pozhar/
 dosite gemini://gemlog.blue/users/ScottLoard/
 dosite gemini://gemlog.blue/users/spelltoad/
 # dosite gemini://gemlog.stargrave.org/ '?offset=0' # too big
@@ -150,14 +154,13 @@ dosite gemini://hsdchannel.cities.yesterweb.org/ index.gmi
 dosite gemini://hugeping.ru/
 dosite gemini://karabas.flounder.online/
 dosite gemini://kirill.zholnay.name/
-dosite gemini://lesarbr.es/
 dosite gemini://levochki.sysrq.in/
 dosite gemini://mo.rijndael.cc/
 dosite gemini://offpunk.com/
 dosite gemini://omega9.flounder.online/
-dosite gemini://ostov.ml/
 dosite gemini://parthen.smol.pub/
 dosite gemini://phreedom.club/ '' index.gmi
+dosite gemini://polyserv.xyz/ index.gmi
 dosite gemini://pub.phreedom.club/ '' '' '' 500
 dosite gemini://sdf.org/xyz/
 dosite gemini://sikmir.ru/
@@ -165,12 +168,9 @@ dosite gemini://simonvolpert.com/
 dosite gemini://sn4il.site/
 dosite gemini://spiri-leo.cities.yesterweb.org/
 dosite gemini://spline-online.ru/
-dosite gemini://sguardo.structbio.net/
 dosite gemini://stalker.shpakovsky.ru/ about.gmi
 dosite gemini://subpoena.gleeze.com/
 dosite gemini://sysrq.in/ru/
-dosite gemini://textgamesinfo.ru/
-dosite gemini://things.leemoon.network/
 dosite gemini://tilde.team/~avarnex/ index.gmi
 dosite gemini://tilde.team/~kull/
 dosite gemini://tilde.team/~rami/ index.gmi '' '' 500
@@ -187,6 +187,7 @@ exists() {
 
 case "$1" in
 	( main | diff )
+		capsules="$(ls data | wc -l)"
 		visited="$(cat data/*/visited_urls.txt | wc -l)"
 		saved="$(ls data/*/*.dat | wc -l)"
 		gemtext="$(head -qn1 data/*/*.dat | grep '20 text/gemini' | wc -l)"
@@ -196,7 +197,7 @@ case "$1" in
 		{
 			sed '/^##/,$d' "$INDEXFILE_REAL" 
 			echo "## $(date -d yesterday +%F)"
-			echo "Адресов посещено: $visited, страниц сохранено: $saved, из них gemtext: $gemtext. Общий объем: $size."
+			echo "Капсул проверено: $capsules, адресов посещено: $visited, страниц сохранено: $saved, из них gemtext: $gemtext. Общий объем: $size."
 
 			if exists data/*/warning.txt; then
 				cat data/*/warning.txt
